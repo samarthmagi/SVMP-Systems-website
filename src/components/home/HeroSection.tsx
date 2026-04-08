@@ -136,7 +136,8 @@ const HeroSection = () => {
         </h1>
 
         <p
-          className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl mb-12 transition-all duration-1000 delay-[800ms]"
+          className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl mb-12 transition-all duration-1000"
+          data-delay="800"
           style={{ opacity: mounted ? 1 : 0, transform: mounted ? "translateY(0)" : "translateY(16px)" }}
         >
           Structure inputs. Govern sessions. Validate outputs. The missing infrastructure between your organization and the models it depends on.
