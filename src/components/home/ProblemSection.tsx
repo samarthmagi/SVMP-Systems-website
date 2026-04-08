@@ -1,67 +1,59 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { AlertTriangle, Shuffle } from "lucide-react";
 
 const ProblemSection = () => {
   const { ref, visible } = useScrollReveal();
 
-  const problems = [
-    {
-      icon: Shuffle,
-      title: "Unstructured inputs",
-      description:
-        "Most LLM integrations accept raw, unvalidated prompts. There is no schema, no guardrail, and no structured expectation of what goes in—or what comes out.",
-    },
-    {
-      icon: AlertTriangle,
-      title: "No session governance",
-      description:
-        "Conversations with models are stateless and unaudited. Organizations have no control over session continuity, escalation, or compliance traceability.",
-    },
-  ];
-
   return (
-    <section ref={ref} className="py-20 border-t border-border relative overflow-hidden">
-      {/* Decorative diagonal lines */}
-      <div className="absolute top-0 right-0 w-48 h-48 opacity-[0.04] pointer-events-none" aria-hidden="true">
-        {Array.from({ length: 6 }).map((_, i) => (
-          <div
-            key={i}
-            className="absolute bg-destructive"
-            style={{
-              width: "1px",
-              height: "200px",
-              transform: `rotate(-45deg) translateX(${i * 20}px)`,
-              top: "-40px",
-              right: `${i * 20}px`,
-            }}
-          />
-        ))}
+    <section ref={ref} className="relative py-28 md:py-36 bg-foreground text-background overflow-hidden noise-overlay">
+      {/* Subtle grid pattern */}
+      <div className="absolute inset-0 opacity-[0.04] pointer-events-none" aria-hidden="true">
+        <svg width="100%" height="100%">
+          <defs>
+            <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+              <path d="M 60 0 L 0 0 0 60" fill="none" stroke="currentColor" strokeWidth="0.5" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid)" className="text-background" />
+        </svg>
       </div>
 
-      <div className="container max-w-3xl">
-        <div className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary mb-4">The Problem</p>
-          <h2 className="text-3xl md:text-4xl font-heading font-semibold text-foreground mb-10">
-            Fragmented input. No validation.
-            <br />
-            Ungoverned output.
-          </h2>
-        </div>
+      <div className="container max-w-4xl relative z-10">
+        <p
+          className={`text-xs font-medium uppercase tracking-[0.3em] text-primary-foreground/50 mb-5 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+        >
+          The Problem
+        </p>
+        <h2
+          className={`text-4xl md:text-5xl lg:text-6xl font-heading font-semibold leading-[1.1] mb-16 tracking-tight transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+        >
+          Fragmented input.
+          <br />
+          No validation.
+          <br />
+          <span className="text-primary-foreground/40">Ungoverned output.</span>
+        </h2>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {problems.map((p, i) => (
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+          {[
+            {
+              num: "01",
+              title: "Unstructured inputs",
+              text: "Most LLM integrations accept raw, unvalidated prompts. There is no schema, no guardrail, and no structured expectation of what goes in—or what comes out.",
+            },
+            {
+              num: "02",
+              title: "No session governance",
+              text: "Conversations with models are stateless and unaudited. Organizations have no control over session continuity, escalation, or compliance traceability.",
+            },
+          ].map((item, i) => (
             <div
-              key={p.title}
-              className={`group relative p-6 rounded-lg border border-border bg-card transition-all duration-700 hover:border-destructive/30 hover:shadow-lg hover:shadow-destructive/5 ${
-                visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-              }`}
+              key={item.num}
+              className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
               style={{ transitionDelay: `${300 + i * 150}ms` }}
             >
-              <div className="w-9 h-9 rounded-md bg-destructive/10 flex items-center justify-center mb-4 transition-colors group-hover:bg-destructive/15">
-                <p.icon className="h-4 w-4 text-destructive" />
-              </div>
-              <h3 className="font-heading text-xl text-foreground mb-3">{p.title}</h3>
-              <p className="text-muted-foreground leading-relaxed text-sm">{p.description}</p>
+              <span className="text-xs font-mono text-primary-foreground/30 mb-4 block">{item.num}</span>
+              <h3 className="font-heading text-2xl mb-4">{item.title}</h3>
+              <p className="text-primary-foreground/60 leading-relaxed">{item.text}</p>
             </div>
           ))}
         </div>

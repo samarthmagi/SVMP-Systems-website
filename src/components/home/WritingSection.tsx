@@ -1,48 +1,83 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, BookOpen, FlaskConical } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+
+const articles = [
+  {
+    to: "/blog",
+    category: "Blog",
+    title: "Systems design for probabilistic outputs",
+    desc: "Why deterministic expectations and probabilistic models require a new kind of middleware.",
+    date: "Coming soon",
+  },
+  {
+    to: "/research",
+    category: "Research",
+    title: "Validation architectures for LLM pipelines",
+    desc: "A technical framework for schema-enforced checkpoints in multi-model workflows.",
+    date: "Coming soon",
+  },
+  {
+    to: "/research",
+    category: "Research",
+    title: "Session governance in enterprise AI",
+    desc: "How stateful session management enables compliance in regulated industries.",
+    date: "Coming soon",
+  },
+];
 
 const WritingSection = () => {
   const { ref, visible } = useScrollReveal();
 
-  const links = [
-    { to: "/blog", label: "Blog", icon: BookOpen, desc: "Essays on systems design and AI governance" },
-    { to: "/research", label: "Research", icon: FlaskConical, desc: "Technical papers and validation architectures" },
-  ];
-
   return (
-    <section ref={ref} className="py-20 border-t border-border">
-      <div className="container max-w-3xl">
-        <div className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary mb-4">Writing &amp; Research</p>
-          <h2 className="text-3xl md:text-4xl font-heading font-semibold text-foreground mb-6">
-            Thinking in public
-          </h2>
-          <p className="text-lg text-muted-foreground leading-relaxed mb-10 max-w-2xl">
-            We publish our thinking on systems design, validation architectures, and the governance challenges that emerge when organizations depend on probabilistic models for deterministic outcomes.
-          </p>
+    <section ref={ref} className="py-28 md:py-36 relative">
+      <div className="absolute top-0 left-0 right-0 h-px bg-border" />
+
+      <div className="container max-w-5xl">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+          <div>
+            <p
+              className={`text-xs font-medium uppercase tracking-[0.3em] text-primary mb-5 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+            >
+              Writing &amp; Research
+            </p>
+            <h2
+              className={`text-4xl md:text-5xl font-heading font-semibold text-foreground tracking-tight transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+            >
+              Thinking in public
+            </h2>
+          </div>
+          <Link
+            to="/blog"
+            className={`group inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-secondary transition-all duration-700 delay-200 ${visible ? "opacity-100" : "opacity-0"}`}
+          >
+            View all <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-4">
-          {links.map((link, i) => (
+        <div className="grid md:grid-cols-3 gap-6">
+          {articles.map((article, i) => (
             <Link
-              key={link.to}
-              to={link.to}
-              className={`group relative p-6 rounded-lg border border-border bg-card transition-all duration-700 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 ${
+              key={i}
+              to={article.to}
+              className={`group flex flex-col p-6 md:p-8 rounded-xl border border-border bg-card transition-all duration-700 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 ${
                 visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
-              style={{ transitionDelay: `${400 + i * 150}ms` }}
+              style={{ transitionDelay: `${300 + i * 100}ms` }}
             >
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 rounded-md bg-primary/10 flex items-center justify-center transition-colors group-hover:bg-primary/15">
-                  <link.icon className="h-4 w-4 text-primary" />
-                </div>
-                <h3 className="font-heading text-lg font-semibold text-foreground">{link.label}</h3>
-              </div>
-              <p className="text-sm text-muted-foreground leading-relaxed mb-4">{link.desc}</p>
-              <span className="inline-flex items-center gap-1.5 text-sm font-medium text-primary">
-                Read <ArrowRight size={13} className="transition-transform duration-300 group-hover:translate-x-1" />
+              <span className="text-[10px] font-semibold uppercase tracking-widest text-primary/60 mb-4">
+                {article.category}
               </span>
+              <h3 className="font-heading text-lg font-semibold text-foreground mb-3 leading-snug group-hover:text-primary transition-colors">
+                {article.title}
+              </h3>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-6 flex-1">
+                {article.desc}
+              </p>
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-muted-foreground/60">{article.date}</span>
+                <ArrowRight size={14} className="text-border transition-all duration-300 group-hover:text-primary group-hover:translate-x-1" />
+              </div>
             </Link>
           ))}
         </div>

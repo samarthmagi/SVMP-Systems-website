@@ -1,71 +1,110 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { Layers, ShieldCheck } from "lucide-react";
+import { useState } from "react";
+
+const solutions = [
+  {
+    id: "buffer",
+    tag: "Statefulness",
+    title: "Session Buffer",
+    description:
+      "A stateful intermediary that captures, structures, and sequences all interactions within a controlled session. Every exchange is logged, governed, and reversible.",
+    details: [
+      "Stateful session management",
+      "Immutable interaction logging",
+      "Reversible exchange sequences",
+    ],
+  },
+  {
+    id: "gate",
+    tag: "Enforcement",
+    title: "Validation Gate",
+    description:
+      "A schema-enforced checkpoint that inspects inputs before they reach the model and validates outputs before they reach the user. Nothing passes without meeting your organization's quality standard.",
+    details: [
+      "Schema-enforced inspection",
+      "Pre-model input validation",
+      "Post-model output checks",
+    ],
+  },
+];
 
 const SolutionSection = () => {
   const { ref, visible } = useScrollReveal();
-
-  const solutions = [
-    {
-      icon: Layers,
-      title: "Session Buffer",
-      description:
-        "A stateful intermediary that captures, structures, and sequences all interactions within a controlled session. Every exchange is logged, governed, and reversible.",
-      tag: "Statefulness",
-    },
-    {
-      icon: ShieldCheck,
-      title: "Validation Gate",
-      description:
-        "A schema-enforced checkpoint that inspects inputs before they reach the model and validates outputs before they reach the user. Nothing passes without meeting your organization's quality standard.",
-      tag: "Enforcement",
-    },
-  ];
+  const [active, setActive] = useState("buffer");
 
   return (
-    <section ref={ref} className="py-20 border-t border-border relative">
-      <div className="container max-w-3xl">
-        <div className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary mb-4">The Solution</p>
-          <h2 className="text-3xl md:text-4xl font-heading font-semibold text-foreground mb-10">
-            Session buffer. Validation gate.
+    <section ref={ref} className="py-28 md:py-36 relative">
+      <div className="absolute top-0 left-0 right-0 h-px bg-border" />
+
+      <div className="container max-w-5xl">
+        <div className="max-w-2xl mb-16">
+          <p
+            className={`text-xs font-medium uppercase tracking-[0.3em] text-primary mb-5 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+          >
+            The Solution
+          </p>
+          <h2
+            className={`text-4xl md:text-5xl font-heading font-semibold text-foreground tracking-tight transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+          >
+            Session buffer.
+            <br />
+            Validation gate.
           </h2>
         </div>
 
-        <div className="space-y-6">
-          {solutions.map((s, i) => (
+        {/* Interactive tabs */}
+        <div className={`transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+          {/* Tab headers */}
+          <div className="flex gap-1 mb-8 p-1 bg-muted rounded-lg w-fit">
+            {solutions.map((s) => (
+              <button
+                key={s.id}
+                onClick={() => setActive(s.id)}
+                className={`px-5 py-2.5 text-sm font-medium rounded-md transition-all duration-300 ${
+                  active === s.id
+                    ? "bg-card text-foreground shadow-sm"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {s.title}
+              </button>
+            ))}
+          </div>
+
+          {/* Tab content */}
+          {solutions.map((s) => (
             <div
-              key={s.title}
-              className={`group relative p-8 rounded-lg bg-card border border-border transition-all duration-700 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 ${
-                visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              key={s.id}
+              className={`transition-all duration-500 ${
+                active === s.id ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 absolute pointer-events-none"
               }`}
-              style={{ transitionDelay: `${300 + i * 150}ms` }}
+              style={{ display: active === s.id ? "block" : "none" }}
             >
-              <div className="flex items-start gap-5">
-                <div className="flex-shrink-0 w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center transition-colors group-hover:bg-primary/15">
-                  <s.icon className="h-5 w-5 text-primary" />
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-3">
-                    <h3 className="font-heading text-xl text-foreground">{s.title}</h3>
-                    <span className="text-[10px] font-medium uppercase tracking-widest text-primary/60 bg-primary/5 px-2 py-0.5 rounded-full">
-                      {s.tag}
-                    </span>
-                  </div>
+              <div className="grid lg:grid-cols-[1.3fr,1fr] gap-10 items-start">
+                <div className="bg-card rounded-xl border border-border p-8 md:p-10">
+                  <span className="inline-block text-[10px] font-semibold uppercase tracking-widest text-primary bg-primary/8 px-3 py-1 rounded-full mb-5">
+                    {s.tag}
+                  </span>
+                  <h3 className="font-heading text-2xl md:text-3xl text-foreground mb-4">{s.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{s.description}</p>
                 </div>
-              </div>
 
-              {/* Decorative corner accent */}
-              <div className="absolute top-0 right-0 w-16 h-16 overflow-hidden rounded-tr-lg pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <div className="absolute top-2 right-2 w-8 h-8 border-t border-r border-primary/20 rounded-tr-md" />
+                <div className="space-y-3">
+                  {s.details.map((d, i) => (
+                    <div
+                      key={i}
+                      className="flex items-center gap-4 p-4 rounded-lg border border-border bg-card/50 transition-all duration-300 hover:border-primary/30 hover:bg-card"
+                    >
+                      <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <span className="text-xs font-semibold text-primary">{i + 1}</span>
+                      </div>
+                      <p className="text-sm font-medium text-foreground">{d}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Connecting line between cards */}
-        <div className="flex justify-center my-0">
-          <div className={`w-px h-6 transition-all duration-1000 ${visible ? "bg-primary/20" : "bg-transparent"}`} style={{ transitionDelay: "600ms" }} />
         </div>
       </div>
     </section>
