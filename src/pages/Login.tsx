@@ -32,7 +32,7 @@ const Login = () => {
     } else if (isSignUp) {
       toast({ title: "Check your email", description: "We sent you a confirmation link." });
     } else {
-      navigate("/");
+      navigate("/dashboard");
     }
   };
 
