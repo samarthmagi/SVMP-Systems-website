@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
 
 const navItems = [
   { label: "SVMP-CS", href: "/cs" },
@@ -13,6 +14,11 @@ const navItems = [
 const Header = () => {
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { user } = useAuth();
+
+  const authLink = user
+    ? { label: "Dashboard", href: "/dashboard" }
+    : { label: "Login", href: "/login" };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-sm border-b border-border">
@@ -34,10 +40,10 @@ const Header = () => {
             </Link>
           ))}
           <Link
-            to="/login"
+            to={authLink.href}
             className="text-sm font-medium px-4 py-2 rounded-md bg-primary text-primary-foreground hover:bg-secondary transition-colors"
           >
-            Login
+            {authLink.label}
           </Link>
         </nav>
 
@@ -63,11 +69,11 @@ const Header = () => {
             </Link>
           ))}
           <Link
-            to="/login"
+            to={authLink.href}
             onClick={() => setMobileOpen(false)}
             className="block text-sm font-medium text-primary"
           >
-            Login
+            {authLink.label}
           </Link>
         </div>
       )}
