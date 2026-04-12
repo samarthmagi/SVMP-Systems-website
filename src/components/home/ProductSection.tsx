@@ -13,71 +13,55 @@ const ProductSection = () => {
   const { ref, visible } = useScrollReveal();
 
   return (
-    <section ref={ref} className="py-28 md:py-36 relative overflow-hidden">
-      {/* Full-width separator */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-border" />
-
+    <section ref={ref} className="section-rule px-0 py-16 md:py-20 relative overflow-hidden">
       <div className="container max-w-5xl">
-        <div className="grid lg:grid-cols-[1fr,1.2fr] gap-16 items-center">
-          {/* Left: Copy */}
+        <div className="grid gap-10 lg:grid-cols-[0.85fr,1.15fr] lg:items-start">
           <div>
             <p
-              className={`text-xs font-medium uppercase tracking-[0.3em] text-primary mb-5 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+              className={`meta-line mb-5 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
             >
               Product
             </p>
             <h2
-              className={`text-4xl md:text-5xl font-heading font-semibold text-foreground mb-6 tracking-tight transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+              className={`display-title text-5xl text-foreground md:text-6xl transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
             >
               SVMP-CS
             </h2>
             <p
-              className={`text-lg text-muted-foreground leading-relaxed mb-8 transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+              className={`mt-5 text-lg text-muted-foreground leading-relaxed transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
             >
               Our first product wedge: a control-session layer that validates, structures, and governs every interaction between users and LLM endpoints. Built for teams that cannot afford ambiguity.
             </p>
             <Link
               to="/cs"
-              className={`group inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-secondary transition-all duration-700 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+              className={`text-link group mt-7 transition-all duration-700 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
             >
               Learn more <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1.5" />
             </Link>
           </div>
 
-          {/* Right: Interactive flow diagram */}
           <div className={`transition-all duration-1000 delay-300 ${visible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"}`}>
-            <div className="relative bg-card rounded-xl border border-border p-8 md:p-10 shadow-sm">
-              {/* Subtle corner decoration */}
-              <div className="absolute top-3 left-3 w-4 h-4 border-l border-t border-primary/20 rounded-tl-sm" />
-              <div className="absolute bottom-3 right-3 w-4 h-4 border-r border-b border-primary/20 rounded-br-sm" />
-
+            <div className="surface p-6 md:p-8">
+              <p className="meta-line mb-4">Flow</p>
               <div className="space-y-0">
-                {steps.map((step, i) => (
+                {steps.map((step) => (
                   <div key={step.num}>
-                    <div className="group flex items-center gap-5 py-4 cursor-default">
-                      {/* Number node */}
+                    <div className="group flex items-center gap-5 border-t border-[var(--line)] py-4 first:border-t-0 cursor-default">
                       <div className="relative flex-shrink-0">
-                        <div className="w-11 h-11 rounded-full border-2 border-primary/20 bg-background flex items-center justify-center transition-all duration-500 group-hover:border-primary/60 group-hover:shadow-lg group-hover:shadow-primary/10 group-hover:scale-110">
-                          <span className="text-xs font-semibold text-primary">{step.num}</span>
+                        <div className="flex h-11 w-11 items-center justify-center border border-[rgba(139,106,45,0.22)] bg-white/30 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-primary/60 group-hover:bg-white/60">
+                          <span className="nav-mono text-[0.62rem] tracking-[0.14em] text-primary">{step.num}</span>
                         </div>
                       </div>
 
-                      {/* Label + description */}
                       <div className="flex-1">
-                        <p className="text-base font-heading font-semibold text-foreground mb-0.5 transition-colors group-hover:text-primary">
+                        <p className="font-heading text-2xl font-semibold text-foreground transition-colors group-hover:text-primary">
                           {step.label}
                         </p>
                         <p className="text-sm text-muted-foreground">{step.desc}</p>
                       </div>
 
-                      {/* Arrow indicator */}
                       <ArrowRight size={14} className="text-border transition-all duration-300 group-hover:text-primary group-hover:translate-x-1" />
                     </div>
-
-                    {/* Connector line */}
-                    {i < steps.length - 1 && (
-                      <div className="ml-[21px] w-px h-4 bg-primary/15" />
-                    )}
                   </div>
                 ))}
               </div>
