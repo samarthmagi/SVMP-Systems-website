@@ -8,15 +8,20 @@ interface PageShellProps {
 
 const PageShell = ({ title, subtitle, children }: PageShellProps) => (
   <PageLayout>
-    <section className="py-24 md:py-32">
-      <div className="container max-w-3xl">
-        <h1 className="text-4xl md:text-5xl font-heading font-semibold text-foreground mb-4">{title}</h1>
+    <section className="paper-hero px-0 py-16 md:py-20">
+      <div className="container">
+        <p className="meta-line mb-4">{title}</p>
+        <h1 className="display-title max-w-5xl text-6xl text-foreground md:text-7xl lg:text-8xl">{title}</h1>
         {subtitle && (
-          <p className="text-lg text-muted-foreground leading-relaxed">{subtitle}</p>
+          <p className="mt-5 max-w-2xl text-lg text-muted-foreground leading-relaxed md:text-xl">{subtitle}</p>
         )}
-        {children && <div className="mt-12">{children}</div>}
       </div>
     </section>
+    {children && (
+      <section className="px-0 py-16 md:py-20">
+        <div className="container max-w-5xl">{children}</div>
+      </section>
+    )}
   </PageLayout>
 );
 

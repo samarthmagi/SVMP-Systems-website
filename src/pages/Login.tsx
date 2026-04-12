@@ -45,27 +45,25 @@ const Login = () => {
 
   return (
     <PageLayout>
-      <section className="py-24 md:py-32 flex items-center justify-center min-h-[70vh]">
+      <section className="paper-hero flex min-h-[70vh] items-center justify-center px-0 py-16 md:py-20">
         <div className="w-full max-w-md">
-          {/* Header */}
-          <div className="text-center mb-10">
-            <h1 className="text-4xl font-heading font-semibold text-foreground tracking-tight mb-3">
+          <div className="mb-10 text-center">
+            <p className="meta-line mb-4">Account</p>
+            <h1 className="display-title mb-3 text-5xl text-foreground">
               {isSignUp ? "Create an account" : "Welcome back"}
             </h1>
-            <p className="text-muted-foreground text-base">
+            <p className="text-base text-muted-foreground">
               {isSignUp
                 ? "Get started with SVMP Systems."
                 : "Sign in to your SVMP dashboard."}
             </p>
           </div>
 
-          {/* Card */}
-          <div className="bg-card border border-border rounded-lg p-8 shadow-sm">
-            {/* Google */}
+          <div className="surface p-8">
             <Button
               type="button"
               variant="outline"
-              className="w-full h-11 text-sm font-medium mb-6"
+              className="mb-6 h-12 w-full border-[var(--line)] bg-white/30 font-mono text-[0.68rem] uppercase tracking-[0.14em] hover:bg-white/60"
               onClick={handleGoogle}
             >
               <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
@@ -89,20 +87,20 @@ const Login = () => {
               Continue with Google
             </Button>
 
-            {/* Divider */}
             <div className="relative mb-6">
               <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t border-border" />
+                <span className="w-full border-t border-[var(--line)]" />
               </div>
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-card px-3 text-muted-foreground tracking-wider">or</span>
+              <div className="relative flex justify-center">
+                <span className="bg-[var(--surface-strong)] px-3 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-muted-foreground">
+                  or
+                </span>
               </div>
             </div>
 
-            {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-1.5">
-                <Label htmlFor="email" className="text-sm font-medium text-foreground">
+                <Label htmlFor="email" className="nav-mono text-[0.66rem] tracking-[0.14em] text-foreground">
                   Email
                 </Label>
                 <Input
@@ -112,38 +110,33 @@ const Login = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="h-11 bg-background"
+                  className="h-12 border-[var(--line)] bg-white/30 font-body text-base"
                 />
               </div>
               <div className="space-y-1.5">
-                <Label htmlFor="password" className="text-sm font-medium text-foreground">
+                <Label htmlFor="password" className="nav-mono text-[0.66rem] tracking-[0.14em] text-foreground">
                   Password
                 </Label>
                 <Input
                   id="password"
                   type="password"
-                  placeholder="••••••••"
+                  placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   minLength={6}
-                  className="h-11 bg-background"
+                  className="h-12 border-[var(--line)] bg-white/30 font-body text-base"
                 />
               </div>
-              <Button type="submit" className="w-full h-11 mt-2" disabled={loading}>
-                {loading ? "Please wait…" : isSignUp ? "Create account" : "Sign in"}
+              <Button type="submit" className="paper-button paper-button-primary mt-2 h-12 w-full" disabled={loading}>
+                {loading ? "Please wait..." : isSignUp ? "Create account" : "Sign in"}
               </Button>
             </form>
           </div>
 
-          {/* Toggle */}
-          <p className="text-center text-sm text-muted-foreground mt-6">
+          <p className="mt-6 text-center text-sm text-muted-foreground">
             {isSignUp ? "Already have an account?" : "Don't have an account?"}{" "}
-            <button
-              type="button"
-              onClick={() => setIsSignUp(!isSignUp)}
-              className="text-primary font-medium hover:underline underline-offset-4"
-            >
+            <button type="button" onClick={() => setIsSignUp(!isSignUp)} className="text-link">
               {isSignUp ? "Sign in" : "Create one"}
             </button>
           </p>

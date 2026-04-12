@@ -79,11 +79,11 @@ const policyDistribution = [
 ];
 
 const CHART_COLORS = {
-  primary: "hsl(38, 68%, 31%)",
-  secondary: "hsl(38, 55%, 46%)",
-  muted: "hsl(38, 30%, 76%)",
-  accent: "hsl(36, 30%, 60%)",
-  light: "hsl(38, 30%, 90%)",
+  primary: "hsl(39, 51%, 36%)",
+  secondary: "hsl(38, 42%, 59%)",
+  muted: "hsl(37, 21%, 68%)",
+  accent: "hsl(35, 38%, 78%)",
+  light: "hsl(35, 38%, 87%)",
 };
 
 const PIE_COLORS = [
@@ -95,13 +95,22 @@ const PIE_COLORS = [
 ];
 
 type TimeRange = "24h" | "7d" | "30d";
+type ChartPayload = { color?: string; name?: string; value?: string | number };
 
-const CustomTooltip = ({ active, payload, label }: any) => {
+const CustomTooltip = ({
+  active,
+  payload,
+  label,
+}: {
+  active?: boolean;
+  payload?: ChartPayload[];
+  label?: string | number;
+}) => {
   if (!active || !payload?.length) return null;
   return (
-    <div className="bg-card border border-border rounded-lg px-3 py-2 shadow-md">
+    <div className="border border-[var(--line)] bg-[var(--surface-strong)] px-3 py-2 shadow-md">
       <p className="text-xs font-medium text-foreground mb-1">{label}</p>
-      {payload.map((entry: any, i: number) => (
+      {payload.map((entry: ChartPayload, i: number) => (
         <p key={i} className="text-xs text-muted-foreground">
           <span className="inline-block w-2 h-2 rounded-full mr-1.5" style={{ backgroundColor: entry.color }} />
           {entry.name}: <span className="font-medium text-foreground">{entry.value}</span>
@@ -176,24 +185,23 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Navigation */}
-      <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-sm">
-        <div className="container flex items-center justify-between h-14">
+    <div className="min-h-screen">
+      <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[rgba(245,239,228,0.95)] backdrop-blur-md">
+        <div className="container flex min-h-[76px] items-center justify-between gap-5 py-4">
           <div className="flex items-center gap-6">
             <button
               onClick={() => navigate("/")}
-              className="font-heading text-lg font-semibold tracking-tight text-foreground hover:text-primary transition-colors"
+              className="font-body text-xl font-semibold text-foreground hover:text-primary transition-colors"
             >
-              SVMP Systems
+              SVMP <span className="text-primary">Systems</span>
             </button>
-            <span className="hidden sm:block h-5 w-px bg-border" />
-            <span className="hidden sm:block text-sm text-muted-foreground font-medium">
+            <span className="hidden h-5 w-px bg-[var(--line)] sm:block" />
+            <span className="nav-mono hidden text-[0.68rem] tracking-[0.16em] text-muted-foreground sm:block">
               Dashboard
             </span>
           </div>
           <div className="flex items-center gap-3">
-            <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-md bg-muted/50">
+            <div className="hidden items-center gap-2 border border-[var(--line)] bg-white/30 px-3 py-1.5 sm:flex">
               <div className="h-2 w-2 rounded-full bg-primary/60 animate-pulse-soft" />
               <span className="text-xs text-muted-foreground font-medium">
                 {user?.email}
@@ -208,24 +216,24 @@ const Dashboard = () => {
       </header>
 
       <main className="container py-8 md:py-12 space-y-8 animate-fade-in">
-        {/* Welcome + time range */}
         <section className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <div>
-            <h1 className="text-3xl md:text-4xl font-heading font-semibold text-foreground tracking-tight">
+            <p className="meta-line mb-3">Command Center</p>
+            <h1 className="display-title text-5xl text-foreground md:text-6xl">
               Welcome, {firstName}
             </h1>
             <p className="text-muted-foreground text-base mt-2 max-w-xl">
               Your command center for session validation, policy management, and AI governance tooling.
             </p>
           </div>
-          <div className="flex items-center gap-1 bg-muted/50 rounded-lg p-1">
+          <div className="flex items-center gap-1 border border-[var(--line)] bg-white/30 p-1">
             {timeRangeOptions.map((opt) => (
               <button
                 key={opt.value}
                 onClick={() => setTimeRange(opt.value)}
-                className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
+                className={`nav-mono px-3 py-1.5 text-[0.62rem] tracking-[0.14em] transition-all ${
                   timeRange === opt.value
-                    ? "bg-card text-foreground shadow-sm"
+                    ? "bg-[var(--surface-strong)] text-foreground shadow-sm"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >
@@ -240,14 +248,14 @@ const Dashboard = () => {
           {stats.map((stat) => (
             <div
               key={stat.label}
-              className="group relative bg-card border border-border rounded-lg p-5 transition-all duration-300 hover:shadow-md hover:border-primary/20"
+              className="paper-panel group relative p-5"
             >
               <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center justify-center w-9 h-9 rounded-md bg-muted">
+                <div className="flex items-center justify-center w-9 h-9 border border-[var(--line)] bg-white/30">
                   <stat.icon className="h-4 w-4 text-primary" />
                 </div>
                 {stat.change && (
-                  <span className={`inline-flex items-center gap-0.5 text-xs font-medium px-2 py-0.5 rounded-full ${
+                  <span className={`inline-flex items-center gap-0.5 border border-primary/20 px-2 py-0.5 text-xs font-medium ${
                     stat.trend === "up" 
                       ? "text-primary bg-primary/10" 
                       : "text-primary bg-primary/10"
@@ -261,7 +269,7 @@ const Dashboard = () => {
                   </span>
                 )}
               </div>
-              <p className="text-2xl font-heading font-semibold text-foreground tracking-tight">
+              <p className="text-3xl font-heading font-semibold text-foreground">
                 {stat.value}
               </p>
               <p className="text-xs text-muted-foreground mt-1">{stat.label}</p>
@@ -272,10 +280,10 @@ const Dashboard = () => {
         {/* Charts Row 1 */}
         <div className="grid lg:grid-cols-2 gap-6">
           {/* Sessions Over Time */}
-          <div className="bg-card border border-border rounded-lg p-6">
+          <div className="paper-panel p-6">
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider">
+                <h3 className="nav-mono text-[0.68rem] tracking-[0.14em] text-foreground">
                   Session Validation
                 </h3>
                 <p className="text-xs text-muted-foreground mt-1">Validated vs blocked sessions</p>
@@ -299,9 +307,9 @@ const Dashboard = () => {
                     <stop offset="100%" stopColor={CHART_COLORS.primary} stopOpacity={0} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="hsl(36, 30%, 90%)" vertical={false} />
-                <XAxis dataKey="date" tick={{ fontSize: 11, fill: "hsl(30, 10%, 40%)" }} axisLine={false} tickLine={false} />
-                <YAxis tick={{ fontSize: 11, fill: "hsl(30, 10%, 40%)" }} axisLine={false} tickLine={false} width={35} />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(130, 112, 84, 0.18)" vertical={false} />
+                <XAxis dataKey="date" tick={{ fontSize: 11, fill: "#595246" }} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: "#595246" }} axisLine={false} tickLine={false} width={35} />
                 <Tooltip content={<CustomTooltip />} />
                 <Area type="monotone" dataKey="validated" stroke={CHART_COLORS.primary} fill="url(#gradValidated)" strokeWidth={2} name="Validated" />
                 <Area type="monotone" dataKey="blocked" stroke={CHART_COLORS.muted} fill="transparent" strokeWidth={1.5} strokeDasharray="4 4" name="Blocked" />
@@ -310,10 +318,10 @@ const Dashboard = () => {
           </div>
 
           {/* API Calls */}
-          <div className="bg-card border border-border rounded-lg p-6">
+          <div className="paper-panel p-6">
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider">
+                <h3 className="nav-mono text-[0.68rem] tracking-[0.14em] text-foreground">
                   API Traffic
                 </h3>
                 <p className="text-xs text-muted-foreground mt-1">Requests per time window</p>
@@ -321,9 +329,9 @@ const Dashboard = () => {
             </div>
             <ResponsiveContainer width="100%" height={220}>
               <BarChart data={apiCallsData} barSize={24}>
-                <CartesianGrid strokeDasharray="3 3" stroke="hsl(36, 30%, 90%)" vertical={false} />
-                <XAxis dataKey="hour" tick={{ fontSize: 10, fill: "hsl(30, 10%, 40%)" }} axisLine={false} tickLine={false} />
-                <YAxis tick={{ fontSize: 11, fill: "hsl(30, 10%, 40%)" }} axisLine={false} tickLine={false} width={35} />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(130, 112, 84, 0.18)" vertical={false} />
+                <XAxis dataKey="hour" tick={{ fontSize: 10, fill: "#595246" }} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: "#595246" }} axisLine={false} tickLine={false} width={35} />
                 <Tooltip content={<CustomTooltip />} />
                 <Bar dataKey="calls" fill={CHART_COLORS.primary} radius={[3, 3, 0, 0]} name="Calls" />
               </BarChart>
@@ -334,10 +342,10 @@ const Dashboard = () => {
         {/* Charts Row 2 */}
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Latency */}
-          <div className="lg:col-span-2 bg-card border border-border rounded-lg p-6">
+          <div className="paper-panel p-6 lg:col-span-2">
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider">
+                <h3 className="nav-mono text-[0.68rem] tracking-[0.14em] text-foreground">
                   Response Latency
                 </h3>
                 <p className="text-xs text-muted-foreground mt-1">P50 / P95 / P99 percentiles (ms)</p>
@@ -359,9 +367,9 @@ const Dashboard = () => {
             </div>
             <ResponsiveContainer width="100%" height={200}>
               <LineChart data={latencyData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="hsl(36, 30%, 90%)" vertical={false} />
-                <XAxis dataKey="date" tick={{ fontSize: 11, fill: "hsl(30, 10%, 40%)" }} axisLine={false} tickLine={false} />
-                <YAxis tick={{ fontSize: 11, fill: "hsl(30, 10%, 40%)" }} axisLine={false} tickLine={false} width={35} unit="ms" />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(130, 112, 84, 0.18)" vertical={false} />
+                <XAxis dataKey="date" tick={{ fontSize: 11, fill: "#595246" }} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: "#595246" }} axisLine={false} tickLine={false} width={35} unit="ms" />
                 <Tooltip content={<CustomTooltip />} />
                 <Line type="monotone" dataKey="p50" stroke={CHART_COLORS.primary} strokeWidth={2} dot={false} name="P50" />
                 <Line type="monotone" dataKey="p95" stroke={CHART_COLORS.secondary} strokeWidth={1.5} dot={false} name="P95" />
@@ -371,9 +379,9 @@ const Dashboard = () => {
           </div>
 
           {/* Policy Distribution */}
-          <div className="bg-card border border-border rounded-lg p-6">
+          <div className="paper-panel p-6">
             <div className="mb-4">
-              <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider">
+              <h3 className="nav-mono text-[0.68rem] tracking-[0.14em] text-foreground">
                 Policy Distribution
               </h3>
               <p className="text-xs text-muted-foreground mt-1">Active policies by type</p>
@@ -413,39 +421,39 @@ const Dashboard = () => {
 
         {/* Bottom grid */}
         <div className="grid lg:grid-cols-3 gap-6">
-          {/* Quick Actions — 2 cols */}
+          {/* Quick Actions */}
           <section className="lg:col-span-2 space-y-4">
-            <h2 className="text-lg font-heading font-semibold text-foreground">Quick Actions</h2>
+            <h2 className="font-heading text-3xl font-semibold text-foreground">Quick Actions</h2>
             <div className="grid sm:grid-cols-2 gap-4">
               {quickActions.map((card) => (
                 <div
                   key={card.title}
-                  className={`group relative bg-card border border-border rounded-lg p-6 transition-all duration-300 hover:shadow-md hover:border-primary/20 ${
+                  className={`paper-panel group relative p-6 ${
                     card.href ? "cursor-pointer" : ""
                   }`}
                   onClick={() => card.href && navigate(card.href)}
                 >
                   <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-muted group-hover:bg-primary/10 transition-colors">
+                    <div className="flex items-center justify-center w-10 h-10 border border-[var(--line)] bg-white/30 group-hover:bg-white/60 transition-colors">
                       <card.icon className="h-5 w-5 text-primary" />
                     </div>
                     {card.href && (
                       <ArrowUpRight className="h-4 w-4 text-muted-foreground/40 group-hover:text-primary transition-colors" />
                     )}
                   </div>
-                  <h3 className="text-base font-heading font-semibold text-foreground mb-1.5">
+                  <h3 className="text-2xl font-heading font-semibold text-foreground mb-1.5">
                     {card.title}
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                     {card.description}
                   </p>
                   {card.href ? (
-                    <span className="inline-flex items-center text-sm font-medium text-primary group-hover:underline underline-offset-4">
+                    <span className="text-link">
                       {card.action}
                       <ChevronRight className="h-3.5 w-3.5 ml-0.5" />
                     </span>
                   ) : (
-                    <span className="text-xs text-muted-foreground/50 font-medium tracking-wide uppercase">
+                    <span className="nav-mono text-[0.62rem] tracking-[0.14em] text-muted-foreground/70">
                       {card.action}
                     </span>
                   )}
@@ -457,14 +465,14 @@ const Dashboard = () => {
           {/* Sidebar */}
           <section className="space-y-6">
             {/* Activity */}
-            <div className="bg-card border border-border rounded-lg p-6">
-              <h2 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">
+            <div className="paper-panel p-6">
+              <h2 className="nav-mono mb-4 text-[0.68rem] tracking-[0.14em] text-foreground">
                 Recent Activity
               </h2>
               <div className="space-y-4">
                 {recentActivity.map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-muted shrink-0 mt-0.5">
+                    <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center border border-[var(--line)] bg-white/30">
                       <item.icon className="h-3.5 w-3.5 text-muted-foreground" />
                     </div>
                     <div>
@@ -477,8 +485,8 @@ const Dashboard = () => {
             </div>
 
             {/* System Status */}
-            <div className="bg-card border border-border rounded-lg p-6">
-              <h2 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">
+            <div className="paper-panel p-6">
+              <h2 className="nav-mono mb-4 text-[0.68rem] tracking-[0.14em] text-foreground">
                 System Status
               </h2>
               <div className="space-y-3">
@@ -499,8 +507,8 @@ const Dashboard = () => {
             </div>
 
             {/* Quick Links */}
-            <div className="bg-card border border-border rounded-lg p-6">
-              <h2 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">
+            <div className="paper-panel p-6">
+              <h2 className="nav-mono mb-4 text-[0.68rem] tracking-[0.14em] text-foreground">
                 Resources
               </h2>
               <div className="space-y-2">
@@ -512,7 +520,7 @@ const Dashboard = () => {
                   <button
                     key={link.label}
                     onClick={() => navigate(link.href)}
-                    className="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors group"
+                    className="group flex w-full items-center gap-3 px-3 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-white/40 hover:text-foreground"
                   >
                     <link.icon className="h-4 w-4" />
                     <span className="flex-1 text-left">{link.label}</span>
