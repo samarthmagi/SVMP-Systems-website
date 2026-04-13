@@ -25,23 +25,23 @@ const ProductSection = () => {
 
   return (
     <section ref={ref} className="section-rule px-0 py-16 md:py-20">
-      <div className="container max-w-4xl">
+      <div className="container max-w-[1160px]">
         <p className={`meta-line mb-5 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
           Lab Work
         </p>
-        <h2 className={`display-title text-5xl text-foreground md:text-6xl transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+        <h2 className={`display-title max-w-4xl text-5xl text-foreground md:text-6xl transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
           Research questions become product surfaces.
         </h2>
 
-        <div className="mt-12 space-y-0">
+        <div className="mt-12 grid gap-5 md:grid-cols-3">
           {workstreams.map((item, index) => (
             <section
               key={item.label}
-              className={`border-t border-[var(--line)] py-7 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+              className={`link-card transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
               style={{ transitionDelay: `${200 + index * 120}ms` }}
             >
               <p className="meta-line mb-3">{item.label}</p>
-              <h3 className="font-heading text-4xl font-semibold text-foreground">{item.title}</h3>
+              <h3 className="font-heading text-3xl font-semibold text-foreground">{item.title}</h3>
               <p className="mt-3 max-w-3xl text-muted-foreground">{item.copy}</p>
               {item.link && (
                 <Link to={item.link} className="text-link mt-5">

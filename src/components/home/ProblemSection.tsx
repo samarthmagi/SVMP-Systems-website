@@ -5,14 +5,14 @@ const ProblemSection = () => {
 
   return (
     <section ref={ref} className="section-rule px-0 py-16 md:py-20">
-      <div className="container max-w-4xl">
+      <div className="container max-w-[1160px]">
         <p className={`meta-line mb-5 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
           Premise
         </p>
-        <h2 className={`display-title text-5xl text-foreground md:text-6xl transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+        <h2 className={`display-title max-w-4xl text-5xl text-foreground md:text-6xl transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
           The model is not the whole system.
         </h2>
-        <div className={`mt-8 space-y-5 text-lg text-muted-foreground transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+        <div className={`mt-8 max-w-4xl space-y-5 text-lg text-muted-foreground transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
           <p>
             Most LLM integrations still treat the prompt and response as the entire operational boundary. That leaves the difficult parts underdeveloped: input structure, session continuity, policy checks, and output validation.
           </p>

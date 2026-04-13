@@ -5,7 +5,7 @@ const CS = () => (
     title="SVMP-CS"
     subtitle="The control-layer for structured LLM workflows. Validate inputs, govern sessions, and enforce quality at every step of the pipeline."
   >
-    <div className="max-w-3xl space-y-10 text-muted-foreground">
+    <div className="max-w-4xl space-y-10 text-muted-foreground">
       <div className="space-y-6 leading-relaxed">
         <p>
           SVMP-CS introduces a session buffer and validation gate architecture that sits between your users and LLM endpoints. Every request is structured, every response is governed.
