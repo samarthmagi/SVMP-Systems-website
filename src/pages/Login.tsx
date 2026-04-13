@@ -45,11 +45,10 @@ const Login = () => {
 
   return (
     <PageLayout>
-      <section className="paper-hero flex min-h-[70vh] items-center justify-center px-0 py-16 md:py-20">
+      <section className="flex min-h-[70vh] items-center justify-center py-24 md:py-32">
         <div className="w-full max-w-md">
           <div className="mb-10 text-center">
-            <p className="meta-line mb-4">Account</p>
-            <h1 className="display-title mb-3 text-5xl text-foreground">
+            <h1 className="mb-3 font-heading text-5xl font-semibold text-foreground">
               {isSignUp ? "Create an account" : "Welcome back"}
             </h1>
             <p className="text-base text-muted-foreground">
@@ -59,11 +58,11 @@ const Login = () => {
             </p>
           </div>
 
-          <div className="surface p-8">
+          <div className="border border-[var(--line)] bg-[var(--surface)] p-8 shadow-[var(--surface-shadow)]">
             <Button
               type="button"
               variant="outline"
-              className="mb-6 h-12 w-full border-[var(--line)] bg-white/30 font-mono text-[0.68rem] uppercase tracking-[0.14em] hover:bg-white/60"
+              className="mb-6 h-11 w-full text-sm font-medium"
               onClick={handleGoogle}
             >
               <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
@@ -91,16 +90,14 @@ const Login = () => {
               <div className="absolute inset-0 flex items-center">
                 <span className="w-full border-t border-[var(--line)]" />
               </div>
-              <div className="relative flex justify-center">
-                <span className="bg-[var(--surface-strong)] px-3 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-muted-foreground">
-                  or
-                </span>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-[var(--surface-strong)] px-3 text-muted-foreground tracking-wider">or</span>
               </div>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-1.5">
-                <Label htmlFor="email" className="nav-mono text-[0.66rem] tracking-[0.14em] text-foreground">
+                <Label htmlFor="email" className="text-sm font-medium text-foreground">
                   Email
                 </Label>
                 <Input
@@ -110,11 +107,11 @@ const Login = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="h-12 border-[var(--line)] bg-white/30 font-body text-base"
+                  className="h-11 bg-background/40"
                 />
               </div>
               <div className="space-y-1.5">
-                <Label htmlFor="password" className="nav-mono text-[0.66rem] tracking-[0.14em] text-foreground">
+                <Label htmlFor="password" className="text-sm font-medium text-foreground">
                   Password
                 </Label>
                 <Input
@@ -125,10 +122,10 @@ const Login = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   minLength={6}
-                  className="h-12 border-[var(--line)] bg-white/30 font-body text-base"
+                  className="h-11 bg-background/40"
                 />
               </div>
-              <Button type="submit" className="paper-button paper-button-primary mt-2 h-12 w-full" disabled={loading}>
+              <Button type="submit" className="mt-2 h-11 w-full" disabled={loading}>
                 {loading ? "Please wait..." : isSignUp ? "Create account" : "Sign in"}
               </Button>
             </form>
@@ -136,7 +133,11 @@ const Login = () => {
 
           <p className="mt-6 text-center text-sm text-muted-foreground">
             {isSignUp ? "Already have an account?" : "Don't have an account?"}{" "}
-            <button type="button" onClick={() => setIsSignUp(!isSignUp)} className="text-link">
+            <button
+              type="button"
+              onClick={() => setIsSignUp(!isSignUp)}
+              className="font-medium text-primary hover:underline underline-offset-4"
+            >
               {isSignUp ? "Sign in" : "Create one"}
             </button>
           </p>

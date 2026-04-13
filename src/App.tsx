@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/hooks/useAuth";
 import Index from "./pages/Index";
+import Products from "./pages/Products";
 import CS from "./pages/CS";
 import Blog from "./pages/Blog";
 import Research from "./pages/Research";
@@ -27,6 +28,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+            <Route path="/products" element={<Products />} />
             <Route path="/cs" element={<CS />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/research" element={<Research />} />

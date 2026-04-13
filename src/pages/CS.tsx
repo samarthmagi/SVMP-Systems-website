@@ -5,28 +5,34 @@ const CS = () => (
     title="SVMP-CS"
     subtitle="The control-layer for structured LLM workflows. Validate inputs, govern sessions, and enforce quality at every step of the pipeline."
   >
-    <div className="grid gap-6 md:grid-cols-2">
-      <article className="surface p-6 md:p-8">
-        <span className="meta-line mb-4 block">Session Buffer</span>
-        <h3 className="mb-3 font-heading text-3xl font-semibold text-foreground">Stateful control between users and models.</h3>
-        <p className="text-muted-foreground">
-          SVMP-CS introduces a session buffer that captures, structures, and sequences interactions before they reach LLM endpoints.
+    <div className="max-w-3xl space-y-10 text-muted-foreground">
+      <div className="space-y-6 leading-relaxed">
+        <p>
+          SVMP-CS introduces a session buffer and validation gate architecture that sits between your users and LLM endpoints. Every request is structured, every response is governed.
         </p>
-      </article>
-      <article className="surface p-6 md:p-8">
-        <span className="meta-line mb-4 block">Validation Gate</span>
-        <h3 className="mb-3 font-heading text-3xl font-semibold text-foreground">Every request structured. Every response governed.</h3>
-        <p className="text-muted-foreground">
-          Schema enforcement and quality checks sit at the operational edge, where ambiguity usually leaks into production.
+        <p>
+          The product is built around a simple operational premise: LLM systems need a control layer that can carry state, enforce policy, and make the full session auditable.
         </p>
-      </article>
-      <article className="surface p-6 md:col-span-2 md:p-8">
-        <span className="meta-line mb-4 block">Status</span>
-        <h3 className="mb-3 font-heading text-3xl font-semibold text-foreground">Product details coming soon.</h3>
-        <p className="max-w-3xl text-muted-foreground">
-          The first public materials will focus on architecture, integration surfaces, and the governance primitives behind SVMP-CS.
-        </p>
-      </article>
+      </div>
+
+      <section className="border-t border-[var(--line)] pt-6">
+        <p className="meta-line mb-4">Architecture</p>
+        <div className="space-y-5">
+          <div>
+            <h3 className="font-heading text-3xl font-semibold text-foreground">Session Buffer</h3>
+            <p>Captures, structures, and sequences interactions inside a controlled session.</p>
+          </div>
+          <div>
+            <h3 className="font-heading text-3xl font-semibold text-foreground">Validation Gate</h3>
+            <p>Inspects inputs before they reach the model and checks outputs before they reach the user.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-[var(--line)] pt-6">
+        <p className="meta-line mb-4">Status</p>
+        <p>Product details coming soon.</p>
+      </section>
     </div>
   </PageShell>
 );

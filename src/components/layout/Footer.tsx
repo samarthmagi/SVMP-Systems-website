@@ -15,6 +15,7 @@ const Footer = () => (
         <div>
           <p className="mono-label mb-4">Product</p>
           <div className="space-y-2">
+            <Link to="/products" className="block text-sm text-foreground hover:text-primary transition-colors">Products</Link>
             <Link to="/cs" className="block text-sm text-foreground hover:text-primary transition-colors">SVMP-CS</Link>
           </div>
         </div>
