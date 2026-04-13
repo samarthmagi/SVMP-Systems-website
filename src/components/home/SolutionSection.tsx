@@ -12,15 +12,15 @@ const SolutionSection = () => {
 
   return (
     <section ref={ref} className="section-rule px-0 py-16 md:py-20">
-      <div className="container max-w-4xl">
+      <div className="container max-w-[1160px]">
         <p className={`meta-line mb-5 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
           Approach
         </p>
-        <h2 className={`display-title text-5xl text-foreground md:text-6xl transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+        <h2 className={`display-title max-w-4xl text-5xl text-foreground md:text-6xl transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
           Build the control plane, then make it usable.
         </h2>
 
-        <div className="mt-12">
+        <div className="mt-12 grid gap-x-10 md:grid-cols-2">
           {principles.map(([title, copy], index) => (
             <div
               key={title}
