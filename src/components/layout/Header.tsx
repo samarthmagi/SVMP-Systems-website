@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 
 const navItems = [
-  { label: "SVMP-CS", href: "/cs" },
+  { label: "Products", href: "/products" },
   { label: "Blog", href: "/blog" },
   { label: "Research", href: "/research" },
   { label: "About", href: "/about" },
