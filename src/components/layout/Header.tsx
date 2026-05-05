@@ -15,10 +15,7 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 border-b border-[rgba(215,201,173,0.16)] bg-[#1f1d1a] text-[#f7f1e6] backdrop-blur-xl">
       <div className="container flex min-h-[72px] items-center justify-between gap-5 py-3">
-        <Link to="/" className="group inline-flex items-center gap-3 transition-colors hover:text-[#d5b56e]">
-          <span className="flex h-9 w-9 items-center justify-center border border-[rgba(215,201,173,0.25)] bg-[#f7f1e6] font-heading text-2xl font-semibold text-primary transition-all group-hover:-translate-y-0.5 group-hover:border-primary/40">
-            S
-          </span>
+        <Link to="/" className="group inline-flex items-center transition-colors hover:text-[#d5b56e]">
           <span className="font-body text-lg font-semibold sm:text-xl">SVMP Systems</span>
         </Link>
 
