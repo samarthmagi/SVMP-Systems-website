@@ -1,27 +1,28 @@
 import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
-const entries = [
+const articles = [
   {
-    category: "Blog",
-    title: "Systems design for probabilistic outputs",
-    href: "/blog",
-    date: "April 2026",
-    description: "Why deterministic expectations and probabilistic systems require a different kind of middleware.",
+    to: "/research",
+    category: "Research",
+    title: "Governed support workflows",
+    desc: "How approved knowledge, confidence checks, and escalation logic change customer support operations.",
+    date: "Coming soon",
   },
   {
+    to: "/research",
     category: "Research",
-    title: "Validation architectures for LLM pipelines",
-    href: "/research",
-    date: "April 2026",
-    description: "A technical framework for schema-enforced checkpoints in multi-model workflows.",
+    title: "Operational visibility for AI systems",
+    desc: "Why teams need session review, audit trails, and metrics before customer-facing AI can be trusted.",
+    date: "Coming soon",
   },
   {
-    category: "Research",
-    title: "Session governance in enterprise AI",
-    href: "/research",
-    date: "April 2026",
-    description: "How stateful session management supports compliance, auditability, and operational control.",
+    to: "/cs",
+    category: "Product",
+    title: "SVMP-CS product notes",
+    desc: "A closer look at WhatsApp-first support, private portals, and governed escalation for businesses.",
+    date: "Live",
   },
 ];
 
@@ -29,30 +30,54 @@ const WritingSection = () => {
   const { ref, visible } = useScrollReveal();
 
   return (
-    <section ref={ref} className="section-rule px-0 py-16 md:py-20">
-      <div className="container max-w-[1160px]">
-        <p className={`meta-line mb-5 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
-          Writing &amp; Research
-        </p>
-        <h2 className={`display-title max-w-4xl text-5xl text-foreground md:text-6xl transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
-          Notes from the lab.
-        </h2>
-
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
-          {entries.map((entry, index) => (
-            <Link
-              key={entry.title}
-              to={entry.href}
-              className={`link-card group transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
-              style={{ transitionDelay: `${200 + index * 100}ms` }}
+    <section ref={ref} className="calm-band px-0 py-16 md:py-24 relative">
+      <div className="container max-w-5xl">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+          <div>
+            <p
+              className={`meta-line mb-5 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
             >
-              <div className="mb-5 flex flex-wrap gap-3">
-                <p className="meta-line">{entry.category}</p>
-                <p className="nav-mono text-[0.62rem] tracking-[0.14em] text-muted-foreground">{entry.date}</p>
+              Notes
+            </p>
+            <h2
+              className={`display-title text-5xl text-foreground md:text-6xl transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+            >
+              Product thinking,
+              <br />
+              quietly published.
+            </h2>
+          </div>
+          <Link
+            to="/research"
+            className={`text-link transition-all duration-700 delay-200 ${visible ? "opacity-100" : "opacity-0"}`}
+          >
+            View all <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
+        </div>
+
+        <div className="grid gap-0 border border-[var(--line)] md:grid-cols-3">
+          {articles.map((article, i) => (
+            <Link
+              key={i}
+              to={article.to}
+              className={`group flex min-h-[280px] flex-col bg-[rgba(255,253,248,0.46)] p-6 transition-all duration-700 hover:bg-[rgba(255,253,248,0.82)] md:border-l md:p-8 md:first:border-l-0 ${
+                visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              }`}
+              style={{ transitionDelay: `${300 + i * 100}ms` }}
+            >
+              <span className="meta-line mb-4 block">
+                {article.category}
+              </span>
+              <h3 className="font-heading text-2xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
+                {article.title}
+              </h3>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-6 flex-1">
+                {article.desc}
+              </p>
+              <div className="flex items-center justify-between">
+                <span className="nav-mono text-[0.62rem] tracking-[0.14em] text-muted-foreground/70">{article.date}</span>
+                <ArrowRight size={14} className="text-border transition-all duration-300 group-hover:text-primary group-hover:translate-x-1" />
               </div>
-              <h3 className="font-heading text-3xl font-semibold text-foreground transition-colors group-hover:text-primary">{entry.title}</h3>
-              <p className="mt-3 text-sm text-muted-foreground">{entry.description}</p>
-              <p className="text-link mt-5">Coming soon</p>
             </Link>
           ))}
         </div>
