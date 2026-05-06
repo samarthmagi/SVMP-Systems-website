@@ -18,6 +18,9 @@ export default {
         heading: ['Cormorant Garamond', 'Georgia', 'Times New Roman', 'serif'],
         body: ['Source Serif 4', 'Georgia', 'Times New Roman', 'serif'],
         mono: ['IBM Plex Mono', 'SFMono-Regular', 'Consolas', 'monospace'],
+        yuzzah: ['Inter', 'sans-serif'],
+        'yuzzah-serif': ['Playfair Display', 'serif'],
+        'yuzzah-mono': ['JetBrains Mono', 'monospace'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -52,6 +55,21 @@ export default {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+        yuzzah: {
+          cream: "#f4f3ee",
+          dark: {
+            DEFAULT: "#161616",
+            900: "#0a0a0a",
+            800: "#111111",
+            700: "#1a1a1a",
+            surface: "#222222",
+          },
+          gold: {
+            DEFAULT: "#a48b5d",
+            light: "#bba780",
+            dark: "#856e45",
+          },
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
@@ -112,6 +130,9 @@ export default {
         "draw-line": "draw-line 1.5s ease-out forwards",
         "pulse-soft": "pulse-soft 3s ease-in-out infinite",
         "float": "float 4s ease-in-out infinite",
+      },
+      backgroundImage: {
+        "yuzzah-noise": "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')",
       },
     },
   },

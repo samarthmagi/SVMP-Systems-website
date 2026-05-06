@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import PageShell from "@/components/layout/PageShell";
+import YuzzahPageShell from "@/components/YuzzahPageShell";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -105,61 +105,65 @@ const Contact = () => {
   };
 
   return (
-    <PageShell
-      title="Contact"
-      subtitle="SVMP Systems builds practical AI products and systems for real operational workflows. This is the right place to start a conversation about SVMP CS or related support, knowledge, and governance workflows."
+    <YuzzahPageShell
+      eyebrow="Contact / Request a demo"
+      title="Tell us about the team."
+      subtitle="SVMP Systems builds practical AI products and systems for real operational workflows. Start a conversation about SVMP CS, support operations, approved knowledge, or governed AI workflows."
     >
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(280px,0.85fr)]">
-        <article className="tacet-panel p-6 md:p-8">
-          <span className="meta-line mb-4 block">Request a demo</span>
-          <h2 className="mb-3 font-heading text-4xl font-semibold text-foreground md:text-5xl">Tell us about the team.</h2>
-          <p className="max-w-2xl text-muted-foreground">
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(300px,0.85fr)]">
+        <article className="glow-card p-6 md:p-8 lg:p-10">
+          <div className="glow-content">
+          <span className="mb-5 block font-yuzzah-mono text-xs uppercase tracking-[0.24em] text-yuzzah-gold">Request a demo</span>
+          <h2 className="mb-4 font-yuzzah-serif text-4xl italic tracking-[-0.035em] text-white md:text-5xl">
+            Share the workflow.
+          </h2>
+          <p className="max-w-2xl text-white/58">
             Share a little context and we&apos;ll use it to shape the first conversation around SVMP CS, rollout priorities, and the workflows you want to improve.
           </p>
 
           <form onSubmit={handleSubmit} className="mt-8 space-y-6">
             <div className="grid gap-5 md:grid-cols-2">
               <div className="space-y-2.5">
-                <Label htmlFor="contact-name" className="text-sm font-medium text-foreground">Name</Label>
+                <Label htmlFor="contact-name" className="font-yuzzah-mono text-[0.68rem] uppercase tracking-[0.18em] text-white/50">Name</Label>
                 <Input
                   id="contact-name"
                   value={form.name}
                   onChange={(event) => handleChange("name", event.target.value)}
                   placeholder="Your name"
-                  className="h-12 rounded-none border-[var(--line)] bg-background/70"
+                  className="h-[52px] rounded-[0.35rem] border-white/10 bg-white/[0.035] text-white placeholder:text-white/26 focus-visible:ring-yuzzah-gold/40"
                 />
               </div>
 
               <div className="space-y-2.5">
-                <Label htmlFor="contact-email" className="text-sm font-medium text-foreground">Work email</Label>
+                <Label htmlFor="contact-email" className="font-yuzzah-mono text-[0.68rem] uppercase tracking-[0.18em] text-white/50">Work email</Label>
                 <Input
                   id="contact-email"
                   type="email"
                   value={form.workEmail}
                   onChange={(event) => handleChange("workEmail", event.target.value)}
                   placeholder="name@company.com"
-                  className="h-12 rounded-none border-[var(--line)] bg-background/70"
+                  className="h-[52px] rounded-[0.35rem] border-white/10 bg-white/[0.035] text-white placeholder:text-white/26 focus-visible:ring-yuzzah-gold/40"
                 />
               </div>
 
               <div className="space-y-2.5">
-                <Label htmlFor="contact-company" className="text-sm font-medium text-foreground">Company</Label>
+                <Label htmlFor="contact-company" className="font-yuzzah-mono text-[0.68rem] uppercase tracking-[0.18em] text-white/50">Company</Label>
                 <Input
                   id="contact-company"
                   value={form.company}
                   onChange={(event) => handleChange("company", event.target.value)}
                   placeholder="Company name"
-                  className="h-12 rounded-none border-[var(--line)] bg-background/70"
+                  className="h-[52px] rounded-[0.35rem] border-white/10 bg-white/[0.035] text-white placeholder:text-white/26 focus-visible:ring-yuzzah-gold/40"
                 />
               </div>
 
               <div className="space-y-2.5">
-                <Label htmlFor="contact-team-size" className="text-sm font-medium text-foreground">Team size</Label>
+                <Label htmlFor="contact-team-size" className="font-yuzzah-mono text-[0.68rem] uppercase tracking-[0.18em] text-white/50">Team size</Label>
                 <Select value={form.teamSize} onValueChange={(value) => handleChange("teamSize", value)}>
-                  <SelectTrigger id="contact-team-size" className="h-12 rounded-none border-[var(--line)] bg-background/70">
+                  <SelectTrigger id="contact-team-size" className="h-[52px] rounded-[0.35rem] border-white/10 bg-white/[0.035] text-white focus:ring-yuzzah-gold/40">
                     <SelectValue placeholder="Select team size" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="border-white/10 bg-yuzzah-dark-700 text-white">
                     {teamSizeOptions.map((option) => (
                       <SelectItem key={option} value={option}>
                         {option}
@@ -171,13 +175,13 @@ const Contact = () => {
             </div>
 
             <div className="space-y-2.5">
-              <Label htmlFor="contact-rollout" className="text-sm font-medium text-foreground">What should the rollout cover?</Label>
+              <Label htmlFor="contact-rollout" className="font-yuzzah-mono text-[0.68rem] uppercase tracking-[0.18em] text-white/50">What should the rollout cover?</Label>
               <Textarea
                 id="contact-rollout"
                 value={form.message}
                 onChange={(event) => handleChange("message", event.target.value)}
                 placeholder="Tell us about the support workflow, channels, knowledge sources, or operational issues you want to improve."
-                className="min-h-[170px] resize-y rounded-none border-[var(--line)] bg-background/70"
+                className="min-h-[180px] resize-y rounded-[0.35rem] border-white/10 bg-white/[0.035] text-white placeholder:text-white/26 focus-visible:ring-yuzzah-gold/40"
               />
             </div>
 
@@ -185,7 +189,7 @@ const Contact = () => {
               {submitState && (
                 <p
                   className={`max-w-md text-sm leading-relaxed ${
-                    submitState.type === "success" ? "text-foreground" : "text-destructive"
+                    submitState.type === "success" ? "text-yuzzah-gold" : "text-red-300"
                   }`}
                 >
                   {submitState.message}
@@ -194,33 +198,45 @@ const Contact = () => {
               <Button
                 type="submit"
                 disabled={submitting}
-                className="h-12 min-w-[180px] rounded-none bg-foreground px-6 text-background hover:bg-foreground/90"
+                className="btn-primary h-[58px] min-w-[190px] rounded-[0.35rem] border border-white/10 bg-white px-7 font-yuzzah-mono text-[0.68rem] uppercase tracking-[0.2em] text-yuzzah-dark hover:bg-[#f4f3ee]"
               >
                 {submitting ? "Sending..." : "Request a demo"}
               </Button>
             </div>
           </form>
+          </div>
         </article>
 
         <div className="space-y-6">
-          <article className="focus-card p-6 md:p-8">
-            <span className="meta-line mb-4 block">What happens next</span>
-            <h3 className="mb-3 font-heading text-3xl font-semibold text-foreground">A practical first conversation.</h3>
-            <p className="text-muted-foreground">
+          <article className="glow-card p-6 md:p-8">
+            <div className="glow-content">
+            <span className="mb-4 block font-yuzzah-mono text-xs uppercase tracking-[0.24em] text-yuzzah-gold">What happens next</span>
+            <h3 className="mb-3 font-yuzzah-serif text-3xl text-white">A practical first conversation.</h3>
+            <p className="text-white/55">
               We use the details you share to understand the support workflow, the operating constraints, and where SVMP CS could create the most useful leverage.
             </p>
+            </div>
           </article>
 
-          <article className="focus-card p-6 md:p-8">
-            <span className="meta-line mb-4 block">Best for</span>
-            <h3 className="mb-3 font-heading text-3xl font-semibold text-foreground">Teams that want better support operations, not just more automation.</h3>
-            <p className="text-muted-foreground">
+          <article className="glow-card p-6 md:p-8">
+            <div className="glow-content">
+            <span className="mb-4 block font-yuzzah-mono text-xs uppercase tracking-[0.24em] text-yuzzah-gold">Best for</span>
+            <h3 className="mb-3 font-yuzzah-serif text-3xl text-white">Teams that want better support operations, not just more automation.</h3>
+            <p className="text-white/55">
               The page is built for businesses exploring WhatsApp-first support, approved knowledge workflows, governed AI responses, and private operational oversight through SVMP CS.
+            </p>
+            </div>
+          </article>
+
+          <article className="rounded-2xl border border-yuzzah-gold/20 bg-yuzzah-gold/[0.045] p-6 md:p-8">
+            <span className="mb-4 block font-yuzzah-mono text-xs uppercase tracking-[0.24em] text-yuzzah-gold">Signal</span>
+            <p className="text-sm leading-relaxed text-white/60">
+              The strongest demos are tied to one real support workflow, one knowledge source, and one escalation rule.
             </p>
           </article>
         </div>
       </div>
-    </PageShell>
+    </YuzzahPageShell>
   );
 };
 

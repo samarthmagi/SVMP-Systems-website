@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -441,4 +442,170 @@ html {
 
 .section-rule {
   border-top: 1px solid var(--line);
+}
+
+.yuzzah-dark {
+  font-family: 'Inter', sans-serif;
+  color: #f4f3ee;
+  background-color: #161616;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.yuzzah-dark ::selection {
+  background-color: #a48b5d;
+  color: #161616;
+}
+
+.yuzzah-dark .reveal-element {
+  opacity: 0;
+  transform: translateY(30px) scale(0.98);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.yuzzah-dark .reveal-element.is-revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.yuzzah-dark .delay-100 {
+  transition-delay: 100ms;
+}
+
+.yuzzah-dark .delay-200 {
+  transition-delay: 200ms;
+}
+
+.yuzzah-dark .delay-300 {
+  transition-delay: 300ms;
+}
+
+.yuzzah-dark .glow-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 1.5rem;
+  background: #1a1a1a;
+}
+
+.yuzzah-dark .glow-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    800px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+    rgba(164, 139, 93, 0.15),
+    transparent 40%
+  );
+  transition: background 0.3s ease;
+}
+
+.yuzzah-dark .glow-content {
+  position: relative;
+  z-index: 1;
+}
+
+.yuzzah-dark .bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.026) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.026) 1px, transparent 1px);
+  mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+}
+
+.yuzzah-dark .system-node {
+  min-height: auto;
+  background: #111111;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.035),
+    0 34px 100px -36px rgba(0, 0, 0, 0.9),
+    0 0 120px rgba(164, 139, 93, 0.045);
+}
+
+.yuzzah-dark .hero-terminal-body {
+  background:
+    radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.035), transparent 38%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.018), rgba(0, 0, 0, 0.18));
+}
+
+.yuzzah-dark .glass-nav {
+  background: rgba(18, 18, 18, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+}
+
+.yuzzah-dark .btn-primary {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.yuzzah-dark .btn-primary::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 60%);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.5s ease;
+}
+
+.yuzzah-dark .btn-primary:hover::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@keyframes yuzzah-scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes yuzzah-spin-slow {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes yuzzah-spin-reverse {
+  to {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}
+
+@keyframes yuzzah-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.yuzzah-dark .animate-yuzzah-scanline {
+  animation: yuzzah-scanline 8s linear infinite;
+}
+
+.yuzzah-dark .animate-yuzzah-spin-slow {
+  animation: yuzzah-spin-slow 12s linear infinite;
+}
+
+.yuzzah-dark .animate-yuzzah-spin-reverse {
+  animation: yuzzah-spin-reverse 16s linear infinite;
+}
+
+.yuzzah-dark .yuzzah-marquee {
+  animation: yuzzah-marquee 20s linear infinite;
 }
