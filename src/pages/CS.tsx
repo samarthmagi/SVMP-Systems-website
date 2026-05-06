@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import YuzzahPageShell from "@/components/YuzzahPageShell";
+import { SupportFlowVisual } from "@/components/YuzzahInteractives";
 
 const capabilityCards = [
   {
@@ -27,6 +28,10 @@ const CS = () => (
     title="SVMP-CS"
     subtitle="Governed AI customer support for WhatsApp-first businesses. Built to answer from approved knowledge, escalate unclear cases to humans, and keep support workflows visible to the team."
   >
+    <section className="mb-6">
+      <SupportFlowVisual />
+    </section>
+
     <div className="grid gap-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
       <article className="glow-card p-8 md:p-10">
         <div className="glow-content flex h-full flex-col">

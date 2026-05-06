@@ -1,29 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
-const productSteps = [
-  {
-    number: "01",
-    title: "Connect",
-    copy: "WhatsApp conversations enter the governed support flow securely.",
-  },
-  {
-    number: "02",
-    title: "Ground",
-    copy: "The answer is formed strictly from approved knowledge and brand rules.",
-  },
-  {
-    number: "03",
-    title: "Check",
-    copy: "Confidence and policy gates decide whether to answer or escalate instantly.",
-  },
-  {
-    number: "04",
-    title: "Review",
-    copy: "Teams inspect sessions, gaps, metrics, and outcomes in one unified portal.",
-  },
-];
-
 const ProofLine = () => (
   <div className="yuzzah-marquee flex items-center gap-8 text-white/20 font-yuzzah-serif text-3xl md:text-5xl uppercase tracking-wider">
     {Array.from({ length: 2 }).map((_, index) => (
@@ -229,46 +206,6 @@ const YuzzahExactLanding = () => {
         </div>
       </section>
 
-      <section id="product" className="dark relative overflow-hidden bg-yuzzah-dark py-32 text-white">
-        <div className="bg-grid-pattern absolute inset-0 z-0 opacity-50" />
-        <div className="pointer-events-none absolute top-0 left-1/2 z-0 h-[500px] w-full max-w-4xl -translate-x-1/2 rounded-full bg-yuzzah-gold/5 blur-[150px]" />
-        <div className="relative z-10 mx-auto max-w-7xl px-6">
-          <div className="reveal-element mb-20 flex flex-col items-end justify-between md:flex-row">
-            <div>
-              <h2 className="mb-4 font-yuzzah-mono text-xs uppercase tracking-widest text-yuzzah-gold">First Product</h2>
-              <h3 className="font-yuzzah-serif text-5xl md:text-7xl">SVMP-CS</h3>
-            </div>
-            <div className="mt-6 max-w-md md:mt-0">
-              <p className="text-lg text-white/60">
-                A governed AI customer support system for WhatsApp-first businesses. It helps teams reduce repetitive
-                support work while keeping approved knowledge, escalation, and oversight close to the workflow.
-              </p>
-            </div>
-          </div>
-
-          <div className="relative mt-24">
-            <div className="absolute top-[40px] left-0 z-0 hidden h-px w-full bg-white/10 lg:block">
-              <div className="h-full w-full bg-gradient-to-r from-yuzzah-gold/0 via-yuzzah-gold to-yuzzah-gold/0 opacity-70" />
-            </div>
-            <div className="relative z-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-              {productSteps.map((step, index) => (
-                <div key={step.number} className={`glow-card reveal-element ${index ? `delay-${index}00` : ""} group cursor-default p-8`}>
-                  <div className="glow-content flex h-full flex-col">
-                    <div className="mb-8 flex h-12 w-12 items-center justify-center rounded border border-white/10 bg-yuzzah-dark-surface font-yuzzah-mono text-sm text-white/50 transition-colors group-hover:border-yuzzah-gold/50 group-hover:text-yuzzah-gold">
-                      {step.number}
-                    </div>
-                    <h4 className="mb-3 font-yuzzah-serif text-2xl text-white transition-colors group-hover:text-yuzzah-gold">
-                      {step.title}
-                    </h4>
-                    <p className="mt-auto text-sm leading-relaxed text-white/50">{step.copy}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section className="dark relative bg-yuzzah-dark py-32 text-white">
         <div className="mx-auto max-w-7xl px-6">
           <div className="reveal-element mb-20 grid items-end gap-16 lg:grid-cols-2">
@@ -425,7 +362,7 @@ const YuzzahExactLanding = () => {
             From loose automation to <br />
             <span className="italic text-yuzzah-gold">governed support.</span>
           </h3>
-          <div className="grid items-center gap-8 md:grid-cols-2 lg:gap-16">
+          <div className="relative grid items-center gap-8 md:grid-cols-2 lg:gap-16">
             <div className="reveal-element group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-8 lg:p-12">
               <div className="absolute top-0 right-0 p-4 opacity-20 transition-opacity group-hover:opacity-50">
                 <svg className="h-8 w-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -449,7 +386,7 @@ const YuzzahExactLanding = () => {
               </div>
             </div>
 
-            <div className="reveal-element absolute left-1/2 z-20 hidden -translate-x-1/2 justify-center md:flex">
+            <div className="reveal-element pointer-events-none absolute left-1/2 top-1/2 z-20 hidden -translate-x-1/2 -translate-y-1/2 justify-center md:flex">
               <div className="flex h-12 w-12 animate-pulse items-center justify-center rounded-full bg-yuzzah-gold text-yuzzah-dark shadow-[0_0_20px_rgba(164,139,93,0.4)]">
                 <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />

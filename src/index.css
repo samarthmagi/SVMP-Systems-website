@@ -609,3 +609,173 @@ html {
 .yuzzah-dark .yuzzah-marquee {
   animation: yuzzah-marquee 20s linear infinite;
 }
+
+.yuzzah-dark .support-flow-visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(circle at 50% 44%, black, transparent 78%);
+  -webkit-mask-image: radial-gradient(circle at 50% 44%, black, transparent 78%);
+}
+
+.yuzzah-dark .support-node {
+  transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+}
+
+.yuzzah-dark .support-node:hover {
+  transform: translateY(-4px);
+  border-color: rgba(164, 139, 93, 0.34);
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.yuzzah-dark .support-dot {
+  box-shadow: 0 0 18px rgba(164, 139, 93, 0.65);
+}
+
+.yuzzah-dark .support-flow-pulse {
+  animation: support-flow-pulse 3.6s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.yuzzah-dark .research-orbit {
+  min-height: 420px;
+}
+
+.yuzzah-dark .research-core {
+  box-shadow: 0 0 60px rgba(164, 139, 93, 0.14);
+}
+
+.yuzzah-dark .research-node {
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  z-index: 12;
+  display: flex;
+  min-width: 92px;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  background: rgba(26, 26, 26, 0.92);
+  padding: 0.65rem 0.9rem;
+  color: rgba(255, 255, 255, 0.62);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+  animation: research-node-pulse 5s ease-in-out infinite;
+}
+
+.yuzzah-dark .research-node:hover {
+  border-color: rgba(164, 139, 93, 0.55);
+  color: #a48b5d;
+}
+
+.yuzzah-dark .research-node-0 {
+  transform: translate(-50%, -50%) rotate(-90deg) translateX(150px) rotate(90deg);
+  animation-delay: 0ms;
+}
+
+.yuzzah-dark .research-node-1 {
+  transform: translate(-50%, -50%) rotate(-18deg) translateX(150px) rotate(18deg);
+  animation-delay: 220ms;
+}
+
+.yuzzah-dark .research-node-2 {
+  transform: translate(-50%, -50%) rotate(54deg) translateX(150px) rotate(-54deg);
+  animation-delay: 440ms;
+}
+
+.yuzzah-dark .research-node-3 {
+  transform: translate(-50%, -50%) rotate(126deg) translateX(150px) rotate(-126deg);
+  animation-delay: 660ms;
+}
+
+.yuzzah-dark .research-node-4 {
+  transform: translate(-50%, -50%) rotate(198deg) translateX(150px) rotate(-198deg);
+  animation-delay: 880ms;
+}
+
+.yuzzah-dark .intake-row {
+  animation: intake-row-glow 3.8s ease-in-out infinite;
+}
+
+.yuzzah-dark .intake-meter {
+  width: 88%;
+  box-shadow: 0 0 18px rgba(164, 139, 93, 0.45);
+  animation: intake-meter 3.8s ease-in-out infinite;
+}
+
+@keyframes support-flow-pulse {
+  0% {
+    left: 0;
+    opacity: 0;
+    transform: translate(-30%, -50%) scaleX(0.5);
+  }
+  18% {
+    opacity: 1;
+  }
+  82% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+    transform: translate(-70%, -50%) scaleX(0.75);
+  }
+}
+
+@keyframes research-node-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(164, 139, 93, 0);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(164, 139, 93, 0.16);
+  }
+}
+
+@keyframes intake-row-glow {
+  0%, 100% {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    border-color: rgba(164, 139, 93, 0.28);
+  }
+}
+
+@keyframes intake-meter {
+  0%, 100% {
+    width: 82%;
+  }
+  50% {
+    width: 92%;
+  }
+}
+
+@media (max-width: 767px) {
+  .yuzzah-dark .research-node {
+    position: relative;
+    left: auto;
+    top: auto;
+    margin-top: 0.75rem;
+    min-width: 0;
+    transform: none !important;
+  }
+
+  .yuzzah-dark .research-orbit {
+    min-height: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .yuzzah-dark .support-flow-pulse,
+  .yuzzah-dark .research-node,
+  .yuzzah-dark .intake-row,
+  .yuzzah-dark .intake-meter {
+    animation: none;
+  }
+}

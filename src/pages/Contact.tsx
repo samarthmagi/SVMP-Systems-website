@@ -1,5 +1,6 @@
 import { FormEvent, useState } from "react";
 import YuzzahPageShell from "@/components/YuzzahPageShell";
+import { IntakeSignalVisual } from "@/components/YuzzahInteractives";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -208,6 +209,8 @@ const Contact = () => {
         </article>
 
         <div className="space-y-6">
+          <IntakeSignalVisual />
+
           <article className="glow-card p-6 md:p-8">
             <div className="glow-content">
             <span className="mb-4 block font-yuzzah-mono text-xs uppercase tracking-[0.24em] text-yuzzah-gold">What happens next</span>

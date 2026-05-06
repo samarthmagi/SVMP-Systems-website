@@ -1,4 +1,5 @@
 import YuzzahPageShell from "@/components/YuzzahPageShell";
+import { ResearchOrbitVisual } from "@/components/YuzzahInteractives";
 
 const researchItems = [
   {
@@ -68,6 +69,9 @@ const Research = () => (
         ))}
       </aside>
     </div>
+    <section className="mt-6">
+      <ResearchOrbitVisual />
+    </section>
   </YuzzahPageShell>
 );
 
