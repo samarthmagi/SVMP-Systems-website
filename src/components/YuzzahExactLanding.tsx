@@ -206,109 +206,74 @@ const YuzzahExactLanding = () => {
         </div>
       </section>
 
-      <section className="dark relative bg-yuzzah-dark py-32 text-white">
+      <section className="dark relative overflow-hidden bg-yuzzah-dark py-32 text-white">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(164,139,93,0.08),transparent_42%)]" />
         <div className="mx-auto max-w-7xl px-6">
           <div className="reveal-element mb-20 grid items-end gap-16 lg:grid-cols-2">
             <div>
-              <h2 className="mb-4 font-yuzzah-mono text-xs uppercase tracking-widest text-white/50">Product Map</h2>
+              <h2 className="mb-4 font-yuzzah-mono text-xs uppercase tracking-widest text-white/50">System Architecture</h2>
               <h3 className="font-yuzzah-serif text-5xl leading-tight md:text-6xl">
-                One system,
+                The system around
                 <br />
-                <span className="italic text-yuzzah-gold">not another bot.</span>
+                <span className="italic text-yuzzah-gold">the model.</span>
               </h3>
             </div>
-            <p className="max-w-md pb-4 text-lg text-white/70">
-              The SVMP-CS workflow is designed around control points: what comes in, what knowledge is allowed, when
-              confidence is sufficient, and how teams review what happened.
+            <p className="max-w-lg pb-4 text-lg text-white/70">
+              SVMP Systems builds the control infrastructure that turns AI from isolated model calls into structured,
+              governed, observable workflows.
             </p>
           </div>
 
-          <div className="grid auto-rows-[minmax(250px,auto)] grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
-            <div className="glow-card reveal-element group row-span-2 flex flex-col p-8 md:col-span-2 lg:col-span-2">
-              <div className="glow-content flex h-full flex-col">
-                <div className="mb-8 flex items-center justify-between">
-                  <span className="font-yuzzah-mono text-xs text-white/40">01</span>
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-yuzzah-dark-surface/50">
-                    <svg className="h-4 w-4 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                    </svg>
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)]">
+            <div className="glow-card reveal-element p-6 md:p-8">
+              <div className="glow-content">
+                <div className="mb-8 flex items-center justify-between border-b border-white/10 pb-5">
+                  <span className="font-yuzzah-mono text-xs uppercase tracking-[0.24em] text-yuzzah-gold">Control stack</span>
+                  <span className="rounded border border-white/10 px-3 py-1.5 font-yuzzah-mono text-[0.62rem] uppercase tracking-[0.2em] text-white/42">
+                    SVMP Systems
+                  </span>
+                </div>
+
+                <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-yuzzah-dark-800/80 p-6">
+                  <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:28px_28px]" />
+                  <div className="architecture-scan pointer-events-none absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-transparent via-yuzzah-gold/10 to-transparent" />
+                  <div className="relative z-10 grid gap-4">
+                    {[
+                      ["01", "Structure", "Define what enters the system before it reaches a model."],
+                      ["02", "Govern", "Apply rules, sequencing, permissions, and state at the workflow level."],
+                      ["03", "Validate", "Check outputs against context, thresholds, and operating constraints."],
+                      ["04", "Observe", "Log decisions, failures, escalations, and system behavior for review."],
+                    ].map(([number, title, copy]) => (
+                      <div key={title} className="architecture-layer group grid gap-4 rounded-xl border border-white/10 bg-white/[0.035] p-4 md:grid-cols-[80px_1fr]">
+                        <span className="font-yuzzah-mono text-xs text-white/34">{number}</span>
+                        <div>
+                          <h4 className="font-yuzzah-serif text-2xl text-white transition-colors group-hover:text-yuzzah-gold">{title}</h4>
+                          <p className="mt-2 text-sm leading-relaxed text-white/50">{copy}</p>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
-                <div className="flex-1">
-                  <h4 className="mb-4 font-yuzzah-serif text-3xl transition-colors group-hover:text-yuzzah-gold">
-                    WhatsApp intake
-                  </h4>
-                  <p className="max-w-sm text-white/60">
-                    Customer questions enter a controlled support workflow instead of a loose chat interface.
-                  </p>
-                </div>
-                <div className="mt-8 border-t border-white/5 pt-6">
-                  <div className="flex max-w-[80%] flex-col gap-3 opacity-70 transition-opacity group-hover:opacity-100">
-                    <div className="self-start rounded-2xl rounded-tl-none border border-white/5 bg-white/5 p-3 text-xs">
-                      I have an issue with my recent order #4920.
+              </div>
+            </div>
+
+            <div className="grid gap-6">
+              {[
+                ["Model calls are not systems", "A prompt can produce an answer. A system needs controls around behavior, memory, validation, and recovery."],
+                ["Human judgment stays visible", "SVMP Systems keeps escalation, oversight, and review paths explicit instead of hiding them behind automation."],
+                ["Reliability is designed", "The work is not to make AI look magical. The work is to make it governable enough for real operations."],
+              ].map(([title, copy], index) => (
+                <article key={title} className="glow-card reveal-element p-7 md:p-8">
+                  <div className="glow-content">
+                    <div className="mb-7 flex items-center justify-between">
+                      <span className="font-yuzzah-mono text-xs text-white/34">0{index + 1}</span>
+                      <span className="h-2 w-2 rounded-full bg-yuzzah-gold" />
                     </div>
-                    <div className="relative self-end overflow-hidden rounded-2xl rounded-tr-none border border-yuzzah-gold/20 bg-yuzzah-gold/10 p-3 text-xs text-white/80 shadow-sm">
-                      <div className="absolute left-0 top-0 h-full w-1 bg-yuzzah-gold" />
-                      Hello! Let me check the status of order #4920 for you according to our policy...
-                    </div>
+                    <h3 className="mb-3 font-yuzzah-serif text-3xl text-white">{title}</h3>
+                    <p className="leading-relaxed text-white/55">{copy}</p>
                   </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="glow-card reveal-element delay-100 group p-8">
-              <div className="glow-content flex h-full flex-col">
-                <div className="mb-6 flex items-center justify-between">
-                  <span className="font-yuzzah-mono text-xs text-white/40">02</span>
-                  <svg className="h-5 w-5 text-white/40 transition-colors group-hover:text-yuzzah-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                  </svg>
-                </div>
-                <h4 className="mb-3 font-yuzzah-serif text-xl">Approved knowledge</h4>
-                <p className="text-sm leading-relaxed text-white/60">
-                  Responses are grounded in sources the business owns, updates, and reviews.
-                </p>
-              </div>
-            </div>
-
-            <div className="glow-card reveal-element delay-200 group p-8">
-              <div className="glow-content flex h-full flex-col">
-                <div className="mb-6 flex items-center justify-between">
-                  <span className="font-yuzzah-mono text-xs text-white/40">03</span>
-                  <svg className="h-5 w-5 text-white/40 transition-colors group-hover:text-yuzzah-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                </div>
-                <h4 className="mb-3 font-yuzzah-serif text-xl">Governance logic</h4>
-                <p className="text-sm leading-relaxed text-white/60">
-                  Confidence and policy checks decide when the system can answer and when to escalate.
-                </p>
-              </div>
-            </div>
-
-            <div className="glow-card reveal-element delay-300 group relative flex flex-col overflow-hidden p-8 md:col-span-2">
-              <div className="glow-content z-10 flex h-full flex-col">
-                <div className="mb-6 flex items-center justify-between">
-                  <span className="font-yuzzah-mono text-xs text-white/40">04</span>
-                  <span className="rounded bg-white/5 px-2 py-1 font-yuzzah-mono text-[10px] tracking-widest text-white/60">DASHBOARD</span>
-                </div>
-                <h4 className="mb-3 font-yuzzah-serif text-2xl">Private portal</h4>
-                <p className="relative z-10 max-w-sm text-sm text-white/60">
-                  Teams review sessions, metrics, integrations, rules, and settings from one operating surface.
-                </p>
-                <div className="absolute -right-10 -bottom-10 flex h-48 w-64 rotate-[-5deg] transform flex-col rounded-xl border border-white/10 bg-white p-4 opacity-50 shadow-xl transition-all duration-500 group-hover:-translate-x-2 group-hover:-translate-y-2 group-hover:rotate-0 group-hover:opacity-100">
-                  <div className="mb-4 flex gap-2 border-b border-white/5 pb-2">
-                    <div className="h-2 w-16 rounded bg-black/10" />
-                    <div className="h-2 w-8 rounded bg-black/10" />
-                  </div>
-                  <div className="flex flex-1 items-end gap-2 px-2">
-                    <div className="h-1/3 w-1/4 rounded-t bg-yuzzah-gold/20" />
-                    <div className="h-2/3 w-1/4 rounded-t bg-yuzzah-gold/40" />
-                    <div className="h-full w-1/4 rounded-t bg-yuzzah-gold/60" />
-                    <div className="h-4/5 w-1/4 rounded-t bg-yuzzah-gold/80" />
-                  </div>
-                </div>
-              </div>
+                </article>
+              ))}
             </div>
           </div>
         </div>
@@ -328,19 +293,19 @@ const YuzzahExactLanding = () => {
             <div className="reveal-element relative border-l border-white/10 pl-8">
               <div className="absolute -left-[5px] top-0 h-[9px] w-[9px] rounded-full border-2 border-white/20 bg-yuzzah-dark" />
               <span className="mb-6 block font-yuzzah-mono text-xs text-white/40">PROBLEM</span>
-              <h3 className="mb-4 font-yuzzah-serif text-2xl">Support teams need speed without loose answers.</h3>
+              <h3 className="mb-4 font-yuzzah-serif text-2xl">Teams need automation without losing control.</h3>
               <p className="leading-relaxed text-white/60">
-                Customers expect fast replies, but businesses still need approved knowledge, brand consistency, and a
-                clear handoff when the system is not confident. Hallucinations are not an option.
+                AI can accelerate work, but production teams still need structure, traceability, validation, and clear
+                failure handling. Prompts alone are not enough.
               </p>
             </div>
             <div className="reveal-element delay-100 relative border-l border-yuzzah-gold pl-8">
               <div className="absolute -left-[5px] top-0 h-[9px] w-[9px] rounded-full bg-yuzzah-gold" />
               <span className="mb-6 block font-yuzzah-mono text-xs text-yuzzah-gold">SOLUTION</span>
-              <h3 className="mb-4 font-yuzzah-serif text-2xl">Generic chatbots make the wrong tradeoff.</h3>
+              <h3 className="mb-4 font-yuzzah-serif text-2xl">SVMP Systems builds around the model.</h3>
               <p className="leading-relaxed text-white/60">
-                They can automate the easy cases, but often hide the decision path. SVMP-CS keeps the workflow
-                reviewable through sessions, governance logs, metrics, and settings.
+                We focus on the system layer around AI: structured inputs, governed sessions, validation gates,
+                auditability, and human escalation when certainty is not enough.
               </p>
             </div>
           </div>
@@ -359,8 +324,8 @@ const YuzzahExactLanding = () => {
         <div className="relative z-10 mx-auto max-w-7xl px-6">
           <h2 className="reveal-element mb-6 font-yuzzah-mono text-xs uppercase tracking-widest text-yuzzah-gold">Why Teams Switch</h2>
           <h3 className="reveal-element delay-100 mb-20 max-w-2xl font-yuzzah-serif text-4xl md:text-6xl">
-            From loose automation to <br />
-            <span className="italic text-yuzzah-gold">governed support.</span>
+            From loose model calls to <br />
+            <span className="italic text-yuzzah-gold">governed systems.</span>
           </h3>
           <div className="relative grid items-center gap-8 md:grid-cols-2 lg:gap-16">
             <div className="reveal-element group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-8 lg:p-12">
@@ -369,10 +334,10 @@ const YuzzahExactLanding = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                 </svg>
               </div>
-              <h4 className="mb-8 font-yuzzah-mono text-xs uppercase tracking-widest text-white/40">Without SVMP-CS</h4>
+              <h4 className="mb-8 font-yuzzah-mono text-xs uppercase tracking-widest text-white/40">Without SVMP Systems</h4>
               <div className="space-y-4">
                 <div className="flex items-center justify-between rounded border border-red-500/20 bg-white/5 p-4 text-sm text-white/70">
-                  <span>Unapproved answers</span><span className="font-yuzzah-mono text-xs text-red-400">ERR</span>
+                  <span>Unstructured model calls</span><span className="font-yuzzah-mono text-xs text-red-400">ERR</span>
                 </div>
                 <div className="flex items-center justify-between rounded border border-white/5 bg-white/5 p-4 text-sm text-white/50 blur-[1px] transition-all hover:blur-none">
                   <span>Hidden decision paths</span>
@@ -381,7 +346,7 @@ const YuzzahExactLanding = () => {
                   </svg>
                 </div>
                 <div className="flex items-center justify-between rounded border border-yellow-500/20 bg-white/5 p-4 text-sm text-white/70">
-                  <span>Low-confidence guesses</span><span className="font-yuzzah-mono text-xs text-yellow-400">WARN</span>
+                  <span>Weak failure handling</span><span className="font-yuzzah-mono text-xs text-yellow-400">WARN</span>
                 </div>
               </div>
             </div>
@@ -401,12 +366,12 @@ const YuzzahExactLanding = () => {
                 </svg>
               </div>
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle,rgba(164,139,93,0.05),transparent_55%)] opacity-0 transition-opacity group-hover:opacity-100" />
-              <h4 className="relative z-10 mb-8 font-yuzzah-mono text-xs uppercase tracking-widest text-yuzzah-gold">With SVMP-CS</h4>
+              <h4 className="relative z-10 mb-8 font-yuzzah-mono text-xs uppercase tracking-widest text-yuzzah-gold">With SVMP Systems</h4>
               <div className="relative z-10 space-y-4">
                 {[
-                  ["Approved knowledge", "100%", "bg-green-400"],
-                  ["Escalation rules", "ACTIVE", "bg-yuzzah-gold"],
-                  ["Reviewable sessions", "LOGGED", "bg-blue-400"],
+                  ["Structured inputs", "READY", "bg-green-400"],
+                  ["Governance rules", "ACTIVE", "bg-yuzzah-gold"],
+                  ["Audit trail", "LOGGED", "bg-blue-400"],
                 ].map(([label, status, dot]) => (
                   <div key={label} className="flex cursor-default items-center justify-between rounded border border-white/10 bg-yuzzah-dark p-4 text-sm text-white transition-colors hover:border-yuzzah-gold/50">
                     <span className="flex items-center gap-3"><span className={`h-1.5 w-1.5 rounded-full ${dot}`} /> {label}</span>
@@ -438,7 +403,6 @@ const YuzzahExactLanding = () => {
             <div>
               <h5 className="mb-6 font-yuzzah-mono text-xs uppercase tracking-widest text-white/40">Product</h5>
               <ul className="space-y-4 text-sm font-medium">
-                <li><Link to="/products" className="transition-colors hover:text-yuzzah-gold">Products</Link></li>
                 <li><Link to="/cs" className="transition-colors hover:text-yuzzah-gold">SVMP-CS</Link></li>
               </ul>
             </div>

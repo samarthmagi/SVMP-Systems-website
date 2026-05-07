@@ -710,6 +710,20 @@ html {
   animation: intake-meter 3.8s ease-in-out infinite;
 }
 
+.yuzzah-dark .architecture-layer {
+  transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+.yuzzah-dark .architecture-layer:hover {
+  transform: translateX(4px);
+  border-color: rgba(164, 139, 93, 0.34);
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.yuzzah-dark .architecture-scan {
+  animation: architecture-scan 5.5s ease-in-out infinite;
+}
+
 @keyframes support-flow-pulse {
   0% {
     left: 0;
@@ -756,6 +770,20 @@ html {
   }
 }
 
+@keyframes architecture-scan {
+  0% {
+    transform: translateX(-120%);
+    opacity: 0;
+  }
+  20%, 70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(760%);
+    opacity: 0;
+  }
+}
+
 @media (max-width: 767px) {
   .yuzzah-dark .research-node {
     position: relative;
@@ -775,7 +803,8 @@ html {
   .yuzzah-dark .support-flow-pulse,
   .yuzzah-dark .research-node,
   .yuzzah-dark .intake-row,
-  .yuzzah-dark .intake-meter {
+  .yuzzah-dark .intake-meter,
+  .yuzzah-dark .architecture-scan {
     animation: none;
   }
 }
