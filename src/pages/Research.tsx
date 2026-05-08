@@ -1,76 +1,105 @@
 import YuzzahPageShell from "@/components/YuzzahPageShell";
-import { ResearchOrbitVisual } from "@/components/YuzzahInteractives";
 
-const researchItems = [
+const researchThreads = [
   {
-    label: "01",
-    title: "Validation architectures",
-    copy: "How governed AI systems can check confidence, policy fit, and source grounding before a response reaches a user.",
+    id: "NOTE 01",
+    title: "PlanCompiler",
+    status: "Benchmarking",
+    body: "A planning layer where the model proposes intent, but execution is compiled against a fixed node registry before anything runs.",
   },
   {
-    label: "02",
-    title: "Session control",
-    copy: "Why production workflows need state, escalation paths, and reviewable decisions instead of isolated model calls.",
+    id: "NOTE 02",
+    title: "Governed memory",
+    status: "Designing",
+    body: "A memory system where private notes can exist, but shared memory only changes after validation, provenance, and review.",
   },
   {
-    label: "03",
-    title: "Support operations",
-    copy: "Notes on WhatsApp-first support, approved knowledge, and making automation visible enough for operators to trust.",
+    id: "NOTE 03",
+    title: "Diagnostic engine",
+    status: "Exploring",
+    body: "A way to inspect why a workflow failed: missing source, weak confidence, policy conflict, bad input, or handoff required.",
   },
+];
+
+const operatingQuestions = [
+  "What should an LLM be allowed to decide by itself?",
+  "Which parts of a workflow need deterministic execution?",
+  "How should memory be promoted, rejected, or corrected?",
+  "When does automation become an operational risk?",
 ];
 
 const Research = () => (
   <YuzzahPageShell
     eyebrow="Research"
-    title="Thinking through controlled AI systems."
-    subtitle="Explorations in validation, session governance, escalation design, and the operational foundations behind trustworthy AI products."
+    title="Notes from the system bench."
+    subtitle="We publish from implementation work: planning, memory, validation, audit trails, and the places where language models need operating rules around them."
   >
-    <div className="grid gap-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)]">
-      <article className="glow-card p-8 md:p-10">
-        <div className="glow-content">
-          <div className="mb-10 flex items-center justify-between border-b border-white/10 pb-6">
-            <span className="font-yuzzah-mono text-xs uppercase tracking-[0.24em] text-yuzzah-gold">Publications</span>
-            <span className="rounded border border-white/10 px-3 py-1.5 font-yuzzah-mono text-[0.62rem] uppercase tracking-[0.22em] text-white/42">
-              Coming soon
-            </span>
-          </div>
-          <h2 className="mb-5 font-yuzzah-serif text-4xl italic tracking-[-0.035em] text-white md:text-5xl">
-            Research publications are being prepared.
-          </h2>
-          <p className="max-w-2xl text-lg leading-relaxed text-white/58">
-            We are documenting the product and systems thinking behind SVMP: approved knowledge, validation gates,
-            escalation logic, audit trails, and reliable AI workflows for real operations.
-          </p>
-          <div className="mt-10 flex flex-wrap gap-3">
-            {["Governance", "Validation", "Support AI", "Auditability"].map((tag) => (
-              <span
-                key={tag}
-                className="rounded border border-white/10 bg-white/[0.03] px-4 py-2 font-yuzzah-mono text-[0.65rem] uppercase tracking-[0.2em] text-white/48"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+    <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
+      <aside className="rounded-[1.25rem] border border-white/10 bg-white/[0.025] p-7 md:p-8">
+        <span className="font-yuzzah-mono text-[0.68rem] uppercase tracking-[0.24em] text-yuzzah-gold">
+          Current questions
+        </span>
+        <div className="mt-8 divide-y divide-white/10">
+          {operatingQuestions.map((question, index) => (
+            <p key={question} className="flex gap-5 py-5 text-sm leading-relaxed text-white/62">
+              <span className="font-yuzzah-mono text-[0.68rem] text-white/30">0{index + 1}</span>
+              <span>{question}</span>
+            </p>
+          ))}
         </div>
-      </article>
-
-      <aside className="space-y-6">
-        {researchItems.map((item) => (
-          <article key={item.label} className="glow-card p-7">
-            <div className="glow-content">
-              <div className="mb-6 flex items-center justify-between">
-                <span className="font-yuzzah-mono text-xs text-white/34">{item.label}</span>
-                <span className="h-2 w-2 rounded-full bg-yuzzah-gold" />
-              </div>
-              <h3 className="mb-3 font-yuzzah-serif text-2xl text-white">{item.title}</h3>
-              <p className="text-sm leading-relaxed text-white/55">{item.copy}</p>
-            </div>
-          </article>
-        ))}
       </aside>
+
+      <section className="rounded-[1.25rem] border border-white/10 bg-yuzzah-dark-800/70 p-7 md:p-10">
+        <div className="mb-10 max-w-2xl">
+          <span className="font-yuzzah-mono text-[0.68rem] uppercase tracking-[0.24em] text-yuzzah-gold">
+            Research queue
+          </span>
+          <h2 className="mt-4 font-yuzzah-serif text-4xl italic tracking-[-0.035em] text-white md:text-5xl">
+            Work becomes writing only after it survives use.
+          </h2>
+          <p className="mt-5 text-base leading-relaxed text-white/55">
+            The writing here is deliberately narrow. No generic AI essays, no trend chasing, no fake certainty.
+            Just the primitives we are testing while building governed products.
+          </p>
+        </div>
+
+        <div className="grid gap-4">
+          {researchThreads.map((thread) => (
+            <article
+              key={thread.id}
+              className="grid gap-5 rounded-[0.85rem] border border-white/10 bg-white/[0.025] p-6 transition-colors hover:border-yuzzah-gold/35 md:grid-cols-[120px_1fr_140px]"
+            >
+              <span className="font-yuzzah-mono text-[0.68rem] uppercase tracking-[0.2em] text-white/32">
+                {thread.id}
+              </span>
+              <div>
+                <h3 className="font-yuzzah-serif text-2xl tracking-[-0.02em] text-white">{thread.title}</h3>
+                <p className="mt-2 max-w-2xl text-sm leading-relaxed text-white/55">{thread.body}</p>
+              </div>
+              <span className="self-start justify-self-start rounded-full border border-yuzzah-gold/25 px-3 py-1.5 font-yuzzah-mono text-[0.62rem] uppercase tracking-[0.18em] text-yuzzah-gold md:justify-self-end">
+                {thread.status}
+              </span>
+            </article>
+          ))}
+        </div>
+      </section>
     </div>
-    <section className="mt-6">
-      <ResearchOrbitVisual />
+
+    <section className="mt-8 rounded-[1.25rem] border border-white/10 bg-white/[0.02] p-7 md:p-10">
+      <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+        <div>
+          <span className="font-yuzzah-mono text-[0.68rem] uppercase tracking-[0.24em] text-yuzzah-gold">
+            Publishing rule
+          </span>
+          <h2 className="mt-4 font-yuzzah-serif text-4xl tracking-[-0.035em] text-white">
+            If it cannot be audited, it is not ready.
+          </h2>
+        </div>
+        <p className="max-w-3xl text-lg leading-relaxed text-white/58">
+          Our research is tied to the product standard: every useful AI workflow needs source control, failure paths,
+          review surfaces, and a record of what happened. That is the line between a demo and software.
+        </p>
+      </div>
     </section>
   </YuzzahPageShell>
 );

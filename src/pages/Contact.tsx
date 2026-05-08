@@ -1,6 +1,5 @@
 import { FormEvent, useState } from "react";
 import YuzzahPageShell from "@/components/YuzzahPageShell";
-import { IntakeSignalVisual } from "@/components/YuzzahInteractives";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -108,18 +107,20 @@ const Contact = () => {
   return (
     <YuzzahPageShell
       eyebrow="Contact / Request a demo"
-      title="Tell us about the team."
-      subtitle="SVMP Systems builds practical AI products and systems for real operational workflows. Start a conversation about SVMP CS, support operations, approved knowledge, or governed AI workflows."
+      title="Bring one real workflow."
+      subtitle="The best first conversation is specific. Tell us where the work gets messy, what has to stay controlled, and what a useful pilot would need to prove."
     >
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(300px,0.85fr)]">
-        <article className="glow-card p-6 md:p-8 lg:p-10">
-          <div className="glow-content">
-          <span className="mb-5 block font-yuzzah-mono text-xs uppercase tracking-[0.24em] text-yuzzah-gold">Request a demo</span>
-          <h2 className="mb-4 font-yuzzah-serif text-4xl italic tracking-[-0.035em] text-white md:text-5xl">
-            Share the workflow.
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,1.25fr)_minmax(320px,0.75fr)]">
+        <article className="rounded-[1.25rem] border border-white/10 bg-yuzzah-dark-800/70 p-6 md:p-8 lg:p-10">
+          <span className="mb-5 block font-yuzzah-mono text-xs uppercase tracking-[0.24em] text-yuzzah-gold">
+            Request a demo
+          </span>
+          <h2 className="mb-4 font-yuzzah-serif text-4xl tracking-[-0.035em] text-white md:text-5xl">
+            No sales deck first. Context first.
           </h2>
-          <p className="max-w-2xl text-white/58">
-            Share a little context and we&apos;ll use it to shape the first conversation around SVMP CS, rollout priorities, and the workflows you want to improve.
+          <p className="max-w-2xl leading-relaxed text-white/58">
+            Share the team, the workflow, and the rollout surface. We will use it to decide whether SVMP-CS or a
+            related governed AI workflow is actually worth discussing.
           </p>
 
           <form onSubmit={handleSubmit} className="mt-8 space-y-6">
@@ -205,36 +206,40 @@ const Contact = () => {
               </Button>
             </div>
           </form>
-          </div>
         </article>
 
-        <div className="space-y-6">
-          <IntakeSignalVisual />
+        <div className="space-y-5">
+          {[
+            {
+              label: "Before the call",
+              text: "We read the workflow note first. If it is too broad, we narrow it to one support path, one rule, and one source of truth.",
+            },
+            {
+              label: "Useful fit",
+              text: "Best fit is a team that needs speed but cannot afford uncontrolled answers, hidden decisions, or vague handoffs.",
+            },
+            {
+              label: "Reply",
+              text: "You get a direct follow-up, not an automated nurture sequence.",
+            },
+          ].map((item, index) => (
+            <article key={item.label} className="rounded-[1rem] border border-white/10 bg-white/[0.025] p-6">
+              <div className="mb-5 flex items-center justify-between">
+                <span className="font-yuzzah-mono text-[0.68rem] uppercase tracking-[0.22em] text-yuzzah-gold">
+                  {item.label}
+                </span>
+                <span className="font-yuzzah-mono text-[0.68rem] text-white/25">0{index + 1}</span>
+              </div>
+              <p className="text-sm leading-relaxed text-white/58">{item.text}</p>
+            </article>
+          ))}
 
-          <article className="glow-card p-6 md:p-8">
-            <div className="glow-content">
-            <span className="mb-4 block font-yuzzah-mono text-xs uppercase tracking-[0.24em] text-yuzzah-gold">What happens next</span>
-            <h3 className="mb-3 font-yuzzah-serif text-3xl text-white">A practical first conversation.</h3>
-            <p className="text-white/55">
-              We use the details you share to understand the support workflow, the operating constraints, and where SVMP CS could create the most useful leverage.
-            </p>
-            </div>
-          </article>
-
-          <article className="glow-card p-6 md:p-8">
-            <div className="glow-content">
-            <span className="mb-4 block font-yuzzah-mono text-xs uppercase tracking-[0.24em] text-yuzzah-gold">Best for</span>
-            <h3 className="mb-3 font-yuzzah-serif text-3xl text-white">Teams that want better support operations, not just more automation.</h3>
-            <p className="text-white/55">
-              The page is built for businesses exploring WhatsApp-first support, approved knowledge workflows, governed AI responses, and private operational oversight through SVMP CS.
-            </p>
-            </div>
-          </article>
-
-          <article className="rounded-2xl border border-yuzzah-gold/20 bg-yuzzah-gold/[0.045] p-6 md:p-8">
-            <span className="mb-4 block font-yuzzah-mono text-xs uppercase tracking-[0.24em] text-yuzzah-gold">Signal</span>
-            <p className="text-sm leading-relaxed text-white/60">
-              The strongest demos are tied to one real support workflow, one knowledge source, and one escalation rule.
+          <article className="rounded-[1rem] border border-yuzzah-gold/25 bg-yuzzah-gold/[0.04] p-6">
+            <span className="mb-4 block font-yuzzah-mono text-[0.68rem] uppercase tracking-[0.22em] text-yuzzah-gold">
+              Strongest request
+            </span>
+            <p className="text-sm leading-relaxed text-white/62">
+              "We have this workflow, these sources, this escalation rule, and we need to know where AI can safely help."
             </p>
           </article>
         </div>

@@ -1,38 +1,44 @@
 import { Link } from "react-router-dom";
-import PageShell from "@/components/layout/PageShell";
+import YuzzahPageShell from "@/components/YuzzahPageShell";
 
 const Products = () => (
-  <PageShell
-    title="Products"
-    subtitle="Applied systems work coming out of the SVMP research and product lab."
+  <YuzzahPageShell
+    eyebrow="Systems"
+    title="One product shipping. More primitives behind it."
+    subtitle="The public product surface starts with SVMP-CS. The research surface continues through planning, memory, diagnostics, and review infrastructure."
   >
-    <div className="grid gap-5 md:grid-cols-2">
-      <Link to="/cs" className="link-card">
-        <div className="mb-5 flex flex-wrap gap-3">
-          <p className="meta-line">Product</p>
-          <p className="nav-mono text-[0.62rem] tracking-[0.14em] text-muted-foreground">April 2026</p>
-        </div>
-        <h3 className="mb-3 font-heading text-4xl font-semibold text-foreground">SVMP-CS</h3>
-        <p className="text-muted-foreground">
-          A control-session layer for structured LLM workflows: validate inputs, govern sessions, and enforce quality before outputs reach users.
+    <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+      <Link
+        to="/cs"
+        className="rounded-[1.25rem] border border-yuzzah-gold/25 bg-yuzzah-dark-800/75 p-7 transition-colors hover:border-yuzzah-gold/50 md:p-10"
+      >
+        <span className="font-yuzzah-mono text-[0.68rem] uppercase tracking-[0.24em] text-yuzzah-gold">
+          Shipping
+        </span>
+        <h2 className="mt-5 font-yuzzah-serif text-5xl tracking-[-0.045em] text-white">SVMP-CS</h2>
+        <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/58">
+          Governed customer support for WhatsApp-first businesses: approved knowledge, confidence checks,
+          escalation, session review, and a private operating portal.
         </p>
-        <span className="text-link mt-5">
-          Open SVMP-CS <span aria-hidden="true">-&gt;</span>
+        <span className="mt-8 inline-flex font-yuzzah-mono text-[0.68rem] uppercase tracking-[0.2em] text-yuzzah-gold">
+          Open system page
         </span>
       </Link>
 
-      <section className="link-card">
-        <div className="mb-5 flex flex-wrap gap-3">
-          <p className="meta-line">Lab Pipeline</p>
-          <p className="nav-mono text-[0.62rem] tracking-[0.14em] text-muted-foreground">Ongoing</p>
-        </div>
-        <h3 className="mb-3 font-heading text-4xl font-semibold text-foreground">More systems work later.</h3>
-        <p className="text-muted-foreground">
-          Product surfaces will stay tied to research questions, operational constraints, and the control infrastructure SVMP Systems is building.
+      <section className="rounded-[1.25rem] border border-white/10 bg-white/[0.025] p-7 md:p-10">
+        <span className="font-yuzzah-mono text-[0.68rem] uppercase tracking-[0.24em] text-white/32">
+          Lab
+        </span>
+        <h2 className="mt-5 font-yuzzah-serif text-4xl italic tracking-[-0.035em] text-white">
+          Systems work stays tied to real workflows.
+        </h2>
+        <p className="mt-5 text-sm leading-relaxed text-white/55">
+          We are not trying to look like a giant product suite early. Every new surface has to come from a constraint
+          we can name and test.
         </p>
       </section>
     </div>
-  </PageShell>
+  </YuzzahPageShell>
 );
 
 export default Products;
